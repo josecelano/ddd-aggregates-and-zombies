@@ -2,7 +2,16 @@
   "name": "ddd-aggregates-an-zombies",
   "version": "1.0.0",
   "description": "Tutorial explaining DDD aggregates",
-  "main": "index.js",
+  "main": "zombie.js",
   "author": "Jose Celano",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "test": "jest"
+  }
 }

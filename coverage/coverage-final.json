@@ -1,0 +1,2 @@
+{"/usr/src/app/src/zombie.js": {"path":"/usr/src/app/src/zombie.js","statementMap":{"0":{"start":{"line":2,"column":4},"end":{"line":2,"column":15}}},"fnMap":{"0":{"name":"is_dead","decl":{"start":{"line":1,"column":9},"end":{"line":1,"column":16}},"loc":{"start":{"line":1,"column":19},"end":{"line":3,"column":1}},"line":1}},"branchMap":{},"s":{"0":1},"f":{"0":1},"b":{},"_coverageSchema":"1a1c01bbd47fc00a2c39e90264f33305004495a9","hash":"6fa125484b22d820de88875d98045177885052b8"}
+}
