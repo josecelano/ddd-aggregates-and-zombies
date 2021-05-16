@@ -1,5 +1,7 @@
-import is_dead from "../src/zombie";
+import Zombie from "../src/zombie";
 
 test("zombie is dead", () => {
-  expect(is_dead()).toBe(true);
+  const zombie = new Zombie();
+
+  expect(zombie.isDead()).toBe(true);
 });

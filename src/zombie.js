@@ -1,5 +1,10 @@
-function is_dead() {
-  return true;
+class Zombie {
+  constructor() {
+  }
+
+  isDead() {
+    return true;
+  }
 }
 
-export default is_dead;
+export default Zombie;
