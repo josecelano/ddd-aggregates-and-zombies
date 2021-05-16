@@ -6,22 +6,16 @@ module.exports = {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: [
-    "/node_modules/"
-  ],
+  coveragePathIgnorePatterns: ["/node_modules/"],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "babel",
 
   // An array of file extensions your modules use
-  moduleFileExtensions: [
-    "js",
-  ],
+  moduleFileExtensions: ["js"],
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: [
-    "<rootDir>/src"
-  ],
+  roots: ["<rootDir>/tests"],
 
   // The test environment that will be used for testing
   testEnvironment: "node",
@@ -29,7 +23,6 @@ module.exports = {
   // A map from regular expressions to paths to transformers
   // transform: undefined,
   transform: {
-    '^.+\\.(js|jsx)?$': 'babel-jest'
-  },  
-
+    "^.+\\.(js|jsx)?$": "babel-jest",
+  },
 };

@@ -1,5 +1,5 @@
 function is_dead() {
-    return true
+  return true;
 }
 
 export default is_dead;

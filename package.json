@@ -8,10 +8,22 @@
   "devDependencies": {
     "@babel/core": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
-    "jest": "^26.6.3"
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-html": "^6.1.2",
+    "eslint-plugin-import": "^2.23.2",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "jest": "^26.6.3",
+    "prettier": "^2.3.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --collect-coverage",
+    "test:coverage": "jest ",
+    "lint": "eslint --ignore-path .gitignore . --ext .js,.html",
+    "lint:fix": "yarn run lint --fix"
   }
 }
