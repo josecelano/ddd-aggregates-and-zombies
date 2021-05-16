@@ -1,6 +1,5 @@
 class Zombie {
-  constructor() {
-  }
+  constructor() {}
 
   isDead() {
     return true;

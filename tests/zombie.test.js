@@ -1,6 +1,6 @@
 import Zombie from "../src/zombie";
 
-test("zombie is dead", () => {
+it("should be dead", () => {
   const zombie = new Zombie();
 
   expect(zombie.isDead()).toBe(true);
