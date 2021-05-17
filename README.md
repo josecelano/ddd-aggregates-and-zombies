@@ -1,3 +1,5 @@
+## Usage
+
 Build docker image:
 ```
 docker build -t agg-zom .
@@ -20,3 +22,9 @@ docker run -it --rm \
   agg-zom \
   yarn test
 ```
+
+## TODO
+
+ * A zombie can't be added outside the world.
+ * A zombie can't be from a outside world position.
+ * Refactor getZombie?

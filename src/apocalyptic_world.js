@@ -22,12 +22,12 @@ class ApocalypticWorld {
     return this.columns;
   }
 
-  addZombie(zombie, row, column) {
-    this.grid[row * this.rows + column] = zombie;
+  addZombie(zombie, coordinate) {
+    this.grid[coordinate.row() * this.rows + coordinate.column()] = zombie;
   }
 
-  getZombie(row, column) {
-    return this.grid[row * this.rows + column];
+  getZombie(coordinate) {
+    return this.grid[coordinate.row() * this.rows + coordinate.column()];
   }
 }
 

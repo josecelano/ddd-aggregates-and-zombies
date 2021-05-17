@@ -1,4 +1,5 @@
 import ApocalypticWorld from "../src/apocalyptic_world";
+import Coordinate from "../src/coordinate";
 import Zombie from "../src/zombie";
 
 it("should be a grid of n rows x m columns", () => {
@@ -11,13 +12,11 @@ it("should be a grid of n rows x m columns", () => {
 it("could have a zombie in a world cell", () => {
   const apocalypticWorld = new ApocalypticWorld(10, 11);
   const zombie = new Zombie();
+  const coordinate = new Coordinate(0, 0);
 
-  const row = 0;
-  const column = 0;
+  apocalypticWorld.addZombie(zombie, coordinate);
 
-  apocalypticWorld.addZombie(zombie, row, column);
-
-  const theSameZombie = apocalypticWorld.getZombie(row, column);
+  const theSameZombie = apocalypticWorld.getZombie(coordinate);
 
   expect(zombie).toBe(theSameZombie);
 });
