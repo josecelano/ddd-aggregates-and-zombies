@@ -20,3 +20,9 @@ it("could have a zombie in a world cell", () => {
 
   expect(zombie).toBe(theSameZombie);
 });
+
+it("it should be empty at the beginning", () => {
+  const apocalypticWorld = new ApocalypticWorld(1, 1);
+
+  expect(apocalypticWorld.getZombie(new Coordinate(0, 0))).toBe(" ");
+});

@@ -22,7 +22,6 @@ Run tests:
 
 ## TODO
 
- * At the beginning the world should be empty.
  * A zombie can't be added outside the world.
  * A zombie can't be from a outside world position.
  * Refactor getZombie? getCellContent and class EmptyCell?. Cell could be empty or contain a zombie.
