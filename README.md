@@ -1,30 +1,28 @@
+## Requirements
+
+* Node 14.17.0
+* Docker 20.10.5
+
 ## Usage
 
 Build docker image:
 ```
-docker build -t agg-zom .
+./bin/docker/build.sh
 ```
 
-Run docker image on development environment:
+Run and connect to docker image on development environment:
 ```
-docker run -it --rm \
-  --entrypoint /bin/sh \
-  -v "$PWD":/usr/src/app \
-  -w /usr/src/app -u "$(id -u ${USER}):$(id -g ${USER})" \
-  agg-zom
+./bin/docker/up.sh
 ```
 
 Run tests:
 ```
-docker run -it --rm \
-  -v "$PWD":/usr/src/app \
-  -w /usr/src/app -u "$(id -u ${USER}):$(id -g ${USER})" \
-  agg-zom \
-  yarn test
+./bin/docker/test.sh
 ```
 
 ## TODO
 
+ * At the beginning the world should be empty.
  * A zombie can't be added outside the world.
  * A zombie can't be from a outside world position.
- * Refactor getZombie?
+ * Refactor getZombie? getCellContent and class EmptyCell?. Cell could be empty or contain a zombie.
