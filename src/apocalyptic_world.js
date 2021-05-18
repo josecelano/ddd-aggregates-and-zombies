@@ -9,7 +9,7 @@ class ApocalypticWorld {
     this.grid = [];
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < columns; j++) {
-        this.grid.push(" ");
+        this.grid.push(null);
       }
     }
   }
@@ -27,7 +27,7 @@ class ApocalypticWorld {
     this.grid[coordinate.row() * this.rows + coordinate.column()] = zombie;
   }
 
-  getZombie(coordinate) {
+  getCellContent(coordinate) {
     return this.grid[coordinate.row() * this.rows + coordinate.column()];
   }
 

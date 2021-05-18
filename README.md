@@ -23,5 +23,4 @@ Run tests:
 ## TODO
 
  * `getZombie` can't be used with an outside world coordinate.
- * Refactor: getZombie -> getCellContent and class EmptyCell?. Cell could be empty or contain a zombie.
  * Refactor: extract grid (matrix) from world

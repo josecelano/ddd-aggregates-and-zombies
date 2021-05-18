@@ -16,15 +16,16 @@ it("could have a zombie in a world cell", () => {
 
   apocalypticWorld.addZombie(zombie, coordinate);
 
-  const theSameZombie = apocalypticWorld.getZombie(coordinate);
+  const theSameZombie = apocalypticWorld.getCellContent(coordinate);
 
   expect(zombie).toBe(theSameZombie);
 });
 
 it("it should be empty at the beginning", () => {
   const apocalypticWorld = new ApocalypticWorld(1, 1);
+  const cellContent = apocalypticWorld.getCellContent(new Coordinate(0, 0));
 
-  expect(apocalypticWorld.getZombie(new Coordinate(0, 0))).toBe(" ");
+  expect(cellContent).toBe(null);
 });
 
 it("should allow to add zombies only inside", () => {
