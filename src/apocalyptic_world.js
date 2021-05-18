@@ -28,6 +28,7 @@ class ApocalypticWorld {
   }
 
   getCellContent(coordinate) {
+    this.guardThatCoordinateIsInside(coordinate);
     return this.grid[coordinate.row() * this.rows + coordinate.column()];
   }
 

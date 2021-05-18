@@ -22,5 +22,4 @@ Run tests:
 
 ## TODO
 
- * `getZombie` can't be used with an outside world coordinate.
  * Refactor: extract grid (matrix) from world

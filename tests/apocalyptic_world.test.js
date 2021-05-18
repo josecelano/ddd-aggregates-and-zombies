@@ -43,3 +43,19 @@ it("should allow to add zombies only inside", () => {
 
   expect(attemptToAddAZombieInABadColumn).toThrow(RangeError);
 });
+
+it("should allow to get cell content only inside", () => {
+  const apocalypticWorld = new ApocalypticWorld(1, 1);
+
+  const attemptToGetCellContentInABadRow = () => {
+    apocalypticWorld.getCellContent(new Coordinate(1, 0));
+  };
+
+  expect(attemptToGetCellContentInABadRow).toThrow(RangeError);
+
+  const attemptToGetCellContentInABadColumn = () => {
+    apocalypticWorld.getCellContent(new Coordinate(0, 1));
+  };
+
+  expect(attemptToGetCellContentInABadColumn).toThrow(RangeError);
+});
