@@ -23,11 +23,22 @@ class ApocalypticWorld {
   }
 
   addZombie(zombie, coordinate) {
+    this.guardThatCoordinateIsInside(coordinate);
     this.grid[coordinate.row() * this.rows + coordinate.column()] = zombie;
   }
 
   getZombie(coordinate) {
     return this.grid[coordinate.row() * this.rows + coordinate.column()];
+  }
+
+  guardThatCoordinateIsInside(coordinate) {
+    if (!this.coordinateIsInside(coordinate)) {
+      throw new RangeError(`The coordinate must be inside the world`);
+    }
+  }
+
+  coordinateIsInside(coordinate) {
+    return coordinate.row() < this.rows && coordinate.column() < this.columns;
   }
 }
 

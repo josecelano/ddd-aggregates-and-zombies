@@ -22,6 +22,6 @@ Run tests:
 
 ## TODO
 
- * A zombie can't be added outside the world.
- * A zombie can't be from a outside world position.
- * Refactor getZombie? getCellContent and class EmptyCell?. Cell could be empty or contain a zombie.
+ * `getZombie` can't be used with an outside world coordinate.
+ * Refactor: getZombie -> getCellContent and class EmptyCell?. Cell could be empty or contain a zombie.
+ * Refactor: extract grid (matrix) from world

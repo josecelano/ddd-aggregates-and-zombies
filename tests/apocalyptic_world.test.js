@@ -26,3 +26,19 @@ it("it should be empty at the beginning", () => {
 
   expect(apocalypticWorld.getZombie(new Coordinate(0, 0))).toBe(" ");
 });
+
+it("should allow to add zombies only inside", () => {
+  const apocalypticWorld = new ApocalypticWorld(1, 1);
+
+  const attemptToAddAZombieInABadRow = () => {
+    apocalypticWorld.addZombie(new Zombie(), new Coordinate(1, 0));
+  };
+
+  expect(attemptToAddAZombieInABadRow).toThrow(RangeError);
+
+  const attemptToAddAZombieInABadColumn = () => {
+    apocalypticWorld.addZombie(new Zombie(), new Coordinate(0, 1));
+  };
+
+  expect(attemptToAddAZombieInABadColumn).toThrow(RangeError);
+});
