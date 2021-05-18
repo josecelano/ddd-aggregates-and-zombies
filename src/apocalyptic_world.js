@@ -41,6 +41,22 @@ class ApocalypticWorld {
   coordinateIsInside(coordinate) {
     return coordinate.row() < this.rows && coordinate.column() < this.columns;
   }
+
+  print() {
+    for (let i = 0; i < this.rows; i++) {
+      let row = "";
+      for (let j = 0; j < this.columns; j++) {
+        if (this.grid[i * this.rows + j] === null) {
+          row = `${row} .. `;
+        } else {
+          row = `${row} 🧟 `;
+        }
+      }
+
+      /* eslint-disable no-console */
+      console.log(row);
+    }
+  }
 }
 
 export default ApocalypticWorld;

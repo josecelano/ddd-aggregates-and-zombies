@@ -6,6 +6,7 @@
   "author": "Jose Celano",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
     "babel-eslint": "^10.1.0",
@@ -21,10 +22,12 @@
     "prettier": "^2.3.0"
   },
   "scripts": {
-    "on:save": "clear && yarn run lint:fix && yarn run test:coverage",
+    "build": "babel src -d lib",
+    "start": "node lib/index.js",
     "test": "jest",
     "test:coverage": "jest --collect-coverage",
     "lint": "eslint --ignore-path .gitignore . --ext .js,.html",
-    "lint:fix": "yarn run lint --fix"
+    "lint:fix": "yarn run lint --fix",
+    "on:save": "clear;yarn run lint:fix;yarn build;yarn run test:coverage"
   }
 }
