@@ -1,12 +1,26 @@
 import ApocalypticWorld from "./apocalyptic_world";
 import Coordinate from "./coordinate";
+import world_print from "./world_print";
 import Zombie from "./zombie";
 
-const apocalypticWorld = new ApocalypticWorld(10, 10);
+const rows = 10;
+const columns = 10;
+
+const world = new ApocalypticWorld(rows, columns);
 const zombie = new Zombie();
 
-apocalypticWorld.addZombie(zombie, new Coordinate(0, 0));
-apocalypticWorld.addZombie(zombie, new Coordinate(1, 1));
-apocalypticWorld.addZombie(zombie, new Coordinate(2, 2));
+function populate_world_zombies(world, zombie) {
+  for (let i = 0; i < world.numRows(); i++) {
+    for (let j = 0; j < world.numColumns(); j++) {
+      const addZombie = Math.random() < 0.1; // 10% of cells with zombie
+      if (addZombie) {
+        world.addZombie(zombie, new Coordinate(i, j));
+      }
+    }
+  }
+}
 
-apocalypticWorld.print();
+populate_world_zombies(world, zombie);
+
+/* eslint-disable no-console */
+console.log(world_print(world));

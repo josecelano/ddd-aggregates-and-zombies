@@ -56,25 +56,6 @@ class ApocalypticWorld {
   getGridPositionFrom(coordinate) {
     return coordinate.row() * this.rows + coordinate.column();
   }
-
-  // Print methods.
-  // TODO: extract to presentation layer.
-
-  print() {
-    for (let i = 0; i < this.rows; i++) {
-      let row = "";
-      for (let j = 0; j < this.columns; j++) {
-        if (this.grid[i * this.rows + j] === null) {
-          row = `${row} .. `;
-        } else {
-          row = `${row} 🧟 `;
-        }
-      }
-
-      /* eslint-disable no-console */
-      console.log(row);
-    }
-  }
 }
 
 export default ApocalypticWorld;
