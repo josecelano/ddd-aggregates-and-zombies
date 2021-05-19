@@ -45,16 +45,16 @@ class ApocalypticWorld {
     }
   }
 
-  getGridPositionFrom(coordinate) {
-    return coordinate.row() * this.rows + coordinate.column();
-  }
-
   setGridCellContent(coordinate, content) {
     this.grid[this.getGridPositionFrom(coordinate)] = content;
   }
 
   getGridCellContent(coordinate) {
     return this.grid[this.getGridPositionFrom(coordinate)];
+  }
+
+  getGridPositionFrom(coordinate) {
+    return coordinate.row() * this.rows + coordinate.column();
   }
 
   // Print methods.
