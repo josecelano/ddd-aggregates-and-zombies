@@ -2,16 +2,8 @@ class ApocalypticWorld {
   constructor(rows, columns) {
     this.rows = rows;
     this.columns = columns;
-    this.createCells(this.rows, this.columns);
-  }
-
-  createCells(rows, columns) {
     this.grid = [];
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < columns; j++) {
-        this.grid.push(null);
-      }
-    }
+    this.initGrid(this.rows, this.columns);
   }
 
   numRows() {
@@ -23,24 +15,50 @@ class ApocalypticWorld {
   }
 
   addZombie(zombie, coordinate) {
-    this.guardThatCoordinateIsInside(coordinate);
-    this.grid[coordinate.row() * this.rows + coordinate.column()] = zombie;
+    this.guardThatisInside(coordinate);
+    this.setGridCellContent(coordinate, zombie);
   }
 
   getCellContent(coordinate) {
-    this.guardThatCoordinateIsInside(coordinate);
-    return this.grid[coordinate.row() * this.rows + coordinate.column()];
+    this.guardThatisInside(coordinate);
+    return this.getGridCellContent(coordinate);
   }
 
-  guardThatCoordinateIsInside(coordinate) {
-    if (!this.coordinateIsInside(coordinate)) {
+  guardThatisInside(coordinate) {
+    if (!this.isInside(coordinate)) {
       throw new RangeError(`The coordinate must be inside the world`);
     }
   }
 
-  coordinateIsInside(coordinate) {
+  isInside(coordinate) {
     return coordinate.row() < this.rows && coordinate.column() < this.columns;
   }
+
+  // Grid methods.
+  // Code Review: extract grid class?
+
+  initGrid(rows, columns) {
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < columns; j++) {
+        this.grid.push(null);
+      }
+    }
+  }
+
+  getGridPositionFrom(coordinate) {
+    return coordinate.row() * this.rows + coordinate.column();
+  }
+
+  setGridCellContent(coordinate, content) {
+    this.grid[this.getGridPositionFrom(coordinate)] = content;
+  }
+
+  getGridCellContent(coordinate) {
+    return this.grid[this.getGridPositionFrom(coordinate)];
+  }
+
+  // Print methods.
+  // TODO: extract to presentation layer.
 
   print() {
     for (let i = 0; i < this.rows; i++) {
