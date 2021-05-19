@@ -1,19 +1,27 @@
 import Coordinate from "./coordinate";
 
-function world_print(world) {
+const emptyCell = " .. ";
+const zombieCell = " 🧟 ";
+
+function print_world(world) {
   let output = "";
-  for (let i = 0; i < world.numRows(); i++) {
-    let row = "";
-    for (let j = 0; j < world.numColumns(); j++) {
-      if (world.getCellContent(new Coordinate(i, j)) === null) {
-        row = `${row} .. `;
-      } else {
-        row = `${row} 🧟 `;
-      }
-    }
+  for (let rowIndex = 0; rowIndex < world.numRows(); rowIndex++) {
+    const row = print_row(world, rowIndex);
     output = `${output}${row}\n`;
   }
   return output;
 }
 
-export default world_print;
+function print_row(world, rowIndex) {
+  let row = "";
+  for (let columnIndex = 0; columnIndex < world.numColumns(); columnIndex++) {
+    if (world.cellConstainsZombie(new Coordinate(rowIndex, columnIndex))) {
+      row = `${row}${zombieCell}`;
+    } else {
+      row = `${row}${emptyCell}`;
+    }
+  }
+  return row;
+}
+
+export default print_world;

@@ -1,6 +1,6 @@
 import ApocalypticWorld from "./apocalyptic_world";
 import Coordinate from "./coordinate";
-import world_print from "./world_print";
+import print_world from "./world_print";
 import Zombie from "./zombie";
 
 const rows = 10;
@@ -23,4 +23,4 @@ function populate_world_zombies(world, zombie) {
 populate_world_zombies(world, zombie);
 
 /* eslint-disable no-console */
-console.log(world_print(world));
+console.log(print_world(world));

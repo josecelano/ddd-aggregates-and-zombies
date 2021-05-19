@@ -24,6 +24,10 @@ class ApocalypticWorld {
     return this.getGridCellContent(coordinate);
   }
 
+  cellConstainsZombie(coordinate) {
+    return this.getCellContent(coordinate) !== null;
+  }
+
   guardThatisInside(coordinate) {
     if (!this.isInside(coordinate)) {
       throw new RangeError(`The coordinate must be inside the world`);
