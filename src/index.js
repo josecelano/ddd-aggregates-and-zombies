@@ -1,6 +1,6 @@
 import ApocalypticWorld from "./apocalyptic_world";
 import Coordinate from "./coordinate";
-import print_world from "./world_print";
+import print_world from "./print_world";
 import Zombie from "./zombie";
 
 const rows = 10;

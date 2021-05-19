@@ -1,6 +1,6 @@
 import ApocalypticWorld from "../src/apocalyptic_world";
 import Coordinate from "../src/coordinate";
-import print_world from "../src/world_print";
+import print_world from "../src/print_world";
 import Zombie from "../src/zombie";
 
 it("should print the empty world in a plain text format", () => {
