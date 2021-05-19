@@ -22,4 +22,4 @@ Run tests:
 
 ## TODO
 
- * Refactor: extract grid (matrix) from world
+ * Refactor: extract ApocalypticWorldConsolePrinter.
