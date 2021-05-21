@@ -58,7 +58,7 @@ class ApocalypticWorld {
   }
 
   getGridPositionFrom(coordinate) {
-    return coordinate.row() * this.rows + coordinate.column();
+    return coordinate.row() * this.numColumns() + coordinate.column();
   }
 }
 

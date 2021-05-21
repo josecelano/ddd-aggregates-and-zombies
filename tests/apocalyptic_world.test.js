@@ -59,3 +59,31 @@ it("should allow to get cell content only inside", () => {
 
   expect(attemptToGetCellContentInABadColumn).toThrow(RangeError);
 });
+
+it("should calculate de absolute position in the grid array from the grid matrix coordinate", () => {
+  const apocalypticWorld = new ApocalypticWorld(3, 3);
+
+  /*
+    Matrix:
+    (0,0) (0,1) (0,2)
+    (1,0) (1,1) (1,2)
+    (2,0) (2,1) (2,2)
+
+    Position in array:
+      0     1     2
+      3     4     5
+      6     7     8 
+  */
+
+  expect(apocalypticWorld.getGridPositionFrom(new Coordinate(0, 0))).toBe(0);
+  expect(apocalypticWorld.getGridPositionFrom(new Coordinate(0, 1))).toBe(1);
+  expect(apocalypticWorld.getGridPositionFrom(new Coordinate(0, 2))).toBe(2);
+
+  expect(apocalypticWorld.getGridPositionFrom(new Coordinate(1, 0))).toBe(3);
+  expect(apocalypticWorld.getGridPositionFrom(new Coordinate(1, 1))).toBe(4);
+  expect(apocalypticWorld.getGridPositionFrom(new Coordinate(1, 2))).toBe(5);
+
+  expect(apocalypticWorld.getGridPositionFrom(new Coordinate(2, 0))).toBe(6);
+  expect(apocalypticWorld.getGridPositionFrom(new Coordinate(2, 1))).toBe(7);
+  expect(apocalypticWorld.getGridPositionFrom(new Coordinate(2, 2))).toBe(8);
+});
