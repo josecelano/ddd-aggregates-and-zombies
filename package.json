@@ -28,6 +28,6 @@
     "test:coverage": "jest --collect-coverage",
     "lint": "eslint --ignore-path .gitignore . --ext .js,.html",
     "lint:fix": "yarn run lint --fix",
-    "on:save": "clear;yarn run lint:fix;yarn run test:coverage && yarn build && yarn start"
+    "on:save": "on:save": "clear;yarn run lint:fix;yarn run test:coverage"
   }
 }
