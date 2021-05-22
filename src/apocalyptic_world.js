@@ -15,12 +15,12 @@ class ApocalypticWorld {
   }
 
   addZombie(zombie, coordinate) {
-    this.guardThatisInside(coordinate);
+    this.guardThatIsInside(coordinate);
     this.setGridCellContent(coordinate, zombie);
   }
 
   getCellContent(coordinate) {
-    this.guardThatisInside(coordinate);
+    this.guardThatIsInside(coordinate);
     return this.getGridCellContent(coordinate);
   }
 
@@ -28,7 +28,7 @@ class ApocalypticWorld {
     return this.getCellContent(coordinate) !== null;
   }
 
-  guardThatisInside(coordinate) {
+  guardThatIsInside(coordinate) {
     if (!this.isInside(coordinate)) {
       throw new RangeError(`The coordinate must be inside the world`);
     }
