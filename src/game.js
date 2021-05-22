@@ -25,11 +25,25 @@ class Game {
       );
   
       if (!this.world.cellIsOccupiedByAZombie(coordinate)) {
-        const zombie = new Zombie();
+        const zombie = new Zombie(coordinate);
         this.zombies.push(zombie);
         this.world.markCellAsOccupiedByAZombie(coordinate);
       }
     } while (this.zombies.length < this.initialNumberOfZombies);
+  }
+
+  moveZombies() {
+    this.zombies.forEach((zombie) => {
+      const currentCoordinate = zombie.getCoordinate();
+      const newCoordinate = zombie.move(this.world);
+      
+      if (newCoordinate.equalsTo(currentCoordinate)) {
+        return;
+      }
+
+      this.world.markCellAsOccupiedByAZombie(newCoordinate);
+      this.world.markCellAsEmpty(currentCoordinate);
+    });
   }
 
   render() {

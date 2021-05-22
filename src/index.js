@@ -11,5 +11,6 @@ let game = new Game(rows, columns, initialNumberOfZombies);
 game.startGame();
 
 setInterval((() => { game.render() }), 500);
+setInterval((() => { game.moveZombies() }), 1500);
 
 game.processInputFromKeyboard();

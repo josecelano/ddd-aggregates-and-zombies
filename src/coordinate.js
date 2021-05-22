@@ -23,6 +23,10 @@ class Coordinate {
   column() {
     return this.columNumber;
   }
+
+  equalsTo(coordinate) {
+    return this.rowNumber === coordinate.rowNumber && this.columNumber === coordinate.columNumber;
+  }
 }
 
 export default Coordinate;
