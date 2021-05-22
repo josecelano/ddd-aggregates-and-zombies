@@ -23,20 +23,6 @@ function populate_world_zombies(world, zombies) {
   }
 }
 
-function add_zombie_in_an_empty_cell(world, zombies) {
-  for (let i = 0; i < world.numRows(); i++) {
-    for (let j = 0; j < world.numColumns(); j++) {
-      const coordinate = new Coordinate(i, j);
-      if (!world.cellIsOccupiedByAZombie(coordinate)) {
-        const zombie = new Zombie();
-        zombies.push(zombie);
-        world.markCellAsOccupiedByAZombie(coordinate);
-        return;
-      }
-    }
-  }
-}
-
 function render_game(world, zombies) {
   /* eslint-disable no-console */
   console.clear();
@@ -59,7 +45,6 @@ function createInterval(f, interval, world, zombies) {
 
 function start_game() {
   populate_world_zombies(world, zombies);
-  createInterval(add_zombie_in_an_empty_cell, 300, world, zombies);
   createInterval(render_game, 500, world, zombies);
 }
 
