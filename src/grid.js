@@ -40,10 +40,10 @@ class Grid {
       throw new RangeError(`The coordinate must be inside the grid`);
     }
   }
-  
+
   isInside(coordinate) {
     return coordinate.row() < this.rows && coordinate.column() < this.columns;
-  }  
+  }
 }
 
 export default Grid;

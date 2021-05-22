@@ -24,7 +24,7 @@ it("should allow to set the value for a given position", () => {
   const grid = new Grid(1, 1, "value");
   const coordinate = new Coordinate(0, 0);
 
-  grid.setGridCellContent(coordinate, 'new value');
+  grid.setGridCellContent(coordinate, "new value");
 
   expect(grid.getGridCellContent(coordinate)).toBe("new value");
 });
@@ -41,14 +41,14 @@ it("should calculate de absolute position in the grid array from the grid matrix
       3     4     5
       6     7     8 
   */
- 
+
   const NumRows = 3;
   const numColumns = 3;
 
   const grid = new Grid(NumRows, numColumns);
 
   let position = 0;
- 
+
   for (let i = 0; i < NumRows; i++) {
     for (let j = 0; j < numColumns; j++) {
       expect(grid.getGridPositionFrom(new Coordinate(i, j))).toBe(position++);

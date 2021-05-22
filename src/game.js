@@ -1,26 +1,39 @@
 import ApocalypticWorld from "./apocalyptic_world";
-import Coordinate from "./coordinate";
 import print_world from "./print_world";
+import generateRamdomCoordinate from "./random";
 import Zombie from "./zombie";
 
 // World size
 const rows = 10;
 const columns = 10;
+const number_of_zombies = Math.floor((rows * columns) / 10); // 10% of cells
 
 const world = new ApocalypticWorld(rows, columns);
 const zombies = [];
 
-function populate_world_zombies(world, zombies) {
-  for (let i = 0; i < world.numRows(); i++) {
-    for (let j = 0; j < world.numColumns(); j++) {
-      const addZombie = Math.random() < 0.1; // ~10% of cells with zombies
-      if (addZombie) {
-        const zombie = new Zombie();
-        zombies.push(zombie);
-        world.markCellAsOccupiedByAZombie(new Coordinate(i, j));
-      }
-    }
+function populate_world_with_zombies_in_random_positions(
+  world,
+  zombies,
+  number_of_zombies
+) {
+  if (number_of_zombies > world.size()) {
+    throw new RangeError(
+      `The number of zombies in the world cannot be greater than the number of cells`
+    );
   }
+
+  do {
+    const coordinate = generateRamdomCoordinate(
+      world.numRows(),
+      world.numColumns()
+    );
+
+    if (!world.cellIsOccupiedByAZombie(coordinate)) {
+      const zombie = new Zombie();
+      zombies.push(zombie);
+      world.markCellAsOccupiedByAZombie(coordinate);
+    }
+  } while (zombies.length < number_of_zombies);
 }
 
 function render_game(world, zombies) {
@@ -44,7 +57,11 @@ function createInterval(f, interval, world, zombies) {
 }
 
 function start_game() {
-  populate_world_zombies(world, zombies);
+  populate_world_with_zombies_in_random_positions(
+    world,
+    zombies,
+    number_of_zombies
+  );
   createInterval(render_game, 500, world, zombies);
 }
 

@@ -20,7 +20,9 @@ it("could have a zombie in a world cell", () => {
 
 it("it should be empty at the beginning", () => {
   const apocalypticWorld = new ApocalypticWorld(1, 1);
-  expect(apocalypticWorld.cellIsOccupiedByAZombie(new Coordinate(0, 0))).toBe(false);
+  expect(apocalypticWorld.cellIsOccupiedByAZombie(new Coordinate(0, 0))).toBe(
+    false
+  );
 });
 
 it("should allow to add zombies only inside", () => {
@@ -37,4 +39,9 @@ it("should allow to add zombies only inside", () => {
   };
 
   expect(attemptToAddAZombieInABadColumn).toThrow(RangeError);
+});
+
+it("it should return the world size in number of cells", () => {
+  const apocalypticWorld = new ApocalypticWorld(2, 2);
+  expect(apocalypticWorld.size()).toBe(4);
 });

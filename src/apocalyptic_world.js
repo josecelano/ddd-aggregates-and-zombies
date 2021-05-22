@@ -18,6 +18,10 @@ class ApocalypticWorld {
     return this.columns;
   }
 
+  size() {
+    return this.rows * this.columns;
+  }
+
   markCellAsOccupiedByAZombie(coordinate) {
     this.grid.setGridCellContent(coordinate, CELL_OCCUPIED);
   }
