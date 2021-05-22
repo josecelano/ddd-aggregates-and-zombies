@@ -41,21 +41,19 @@ it("should calculate de absolute position in the grid array from the grid matrix
       3     4     5
       6     7     8 
   */
-  const grid = new Grid(3, 3);
+ 
+  const NumRows = 3;
+  const numColumns = 3;
 
-  // TODO: refactor to loop
+  const grid = new Grid(NumRows, numColumns);
 
-  expect(grid.getGridPositionFrom(new Coordinate(0, 0))).toBe(0);
-  expect(grid.getGridPositionFrom(new Coordinate(0, 1))).toBe(1);
-  expect(grid.getGridPositionFrom(new Coordinate(0, 2))).toBe(2);
-
-  expect(grid.getGridPositionFrom(new Coordinate(1, 0))).toBe(3);
-  expect(grid.getGridPositionFrom(new Coordinate(1, 1))).toBe(4);
-  expect(grid.getGridPositionFrom(new Coordinate(1, 2))).toBe(5);
-
-  expect(grid.getGridPositionFrom(new Coordinate(2, 0))).toBe(6);
-  expect(grid.getGridPositionFrom(new Coordinate(2, 1))).toBe(7);
-  expect(grid.getGridPositionFrom(new Coordinate(2, 2))).toBe(8);
+  let position = 0;
+ 
+  for (let i = 0; i < NumRows; i++) {
+    for (let j = 0; j < numColumns; j++) {
+      expect(grid.getGridPositionFrom(new Coordinate(i, j))).toBe(position++);
+    }
+  }
 });
 
 it("should allow to get cell content only inside", () => {
