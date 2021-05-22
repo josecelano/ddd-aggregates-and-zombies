@@ -14,9 +14,9 @@ class ApocalypticWorld {
     return this.columns;
   }
 
-  addZombie(zombie, coordinate) {
+  addZombie(coordinate) {
     this.guardThatIsInside(coordinate);
-    this.setGridCellContent(coordinate, zombie);
+    this.setGridCellContent(coordinate, true);
   }
 
   getCellContent(coordinate) {

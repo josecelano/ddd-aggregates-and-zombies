@@ -17,7 +17,7 @@ function populate_world_zombies(world, zombies) {
       if (addZombie) {
         const zombie = new Zombie();
         zombies.push(zombie);
-        world.addZombie(zombie, new Coordinate(i, j));
+        world.addZombie(new Coordinate(i, j));
       }
     }
   }
@@ -30,7 +30,7 @@ function add_zombie_in_an_empty_cell(world, zombies) {
       if (!world.cellConstainsZombie(coordinate)) {
         const zombie = new Zombie();
         zombies.push(zombie);
-        world.addZombie(zombie, coordinate);
+        world.addZombie(coordinate);
         return;
       }
     }
