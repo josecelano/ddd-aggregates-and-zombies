@@ -3,66 +3,78 @@ import print_world from "./print_world";
 import generateRamdomCoordinate from "./random";
 import Zombie from "./zombie";
 
-// World size
-const rows = 10;
-const columns = 10;
-const number_of_zombies = Math.floor((rows * columns) / 10); // 10% of cells
-
-const world = new ApocalypticWorld(rows, columns);
-const zombies = [];
-
-function populate_world_with_zombies_in_random_positions(
-  world,
-  zombies,
-  number_of_zombies
-) {
-  if (number_of_zombies > world.size()) {
-    throw new RangeError(
-      `The number of zombies in the world cannot be greater than the number of cells`
-    );
+class Game {
+  constructor(rows, columns, initialNumberOfZombies) {
+    this.rows = rows;
+    this.columns = columns;
+    this.initialNumberOfZombies = initialNumberOfZombies;
+    this.world = new ApocalypticWorld(rows, columns);
+    this.zombies = [];
+    this.guardThatZombiesNumberDoesNotExceedTheNumberOfCells();
   }
 
-  do {
-    const coordinate = generateRamdomCoordinate(
-      world.numRows(),
-      world.numColumns()
-    );
+  startGame() {
+    this.populateWorldWithZombiesInRandomPositions();
+  }
 
-    if (!world.cellIsOccupiedByAZombie(coordinate)) {
-      const zombie = new Zombie();
-      zombies.push(zombie);
-      world.markCellAsOccupiedByAZombie(coordinate);
+  populateWorldWithZombiesInRandomPositions() { 
+    do {
+      const coordinate = generateRamdomCoordinate(
+        this.world.numRows(),
+        this.world.numColumns()
+      );
+  
+      if (!this.world.cellIsOccupiedByAZombie(coordinate)) {
+        const zombie = new Zombie();
+        this.zombies.push(zombie);
+        this.world.markCellAsOccupiedByAZombie(coordinate);
+      }
+    } while (this.zombies.length < this.initialNumberOfZombies);
+  }
+
+  render() {
+    /* eslint-disable no-console */
+    console.clear();
+
+    /* eslint-disable no-console */
+    console.log(print_world(this.world));
+
+    /* eslint-disable no-console */
+    console.log(`Zombies: ${this.zombies.length}`);
+
+    /* eslint-disable no-console */
+    console.log("Ctrl-c to exit");
+  }
+
+  processInputFromKeyboard() {
+    const { stdin } = process;
+  
+    stdin.setRawMode(true);
+    stdin.setEncoding("utf8");
+    // Begin reading from stdin so the process does not exit.
+    stdin.resume();
+  
+    stdin.on("data", function (key) {
+      // ctrl-c to exit
+      if (key === "\u0003") {
+        process.exit();
+      }
+      // write the key to stdout
+      process.stdout.write(key);
+    })
+  }
+
+  guardThatZombiesNumberDoesNotExceedTheNumberOfCells() {
+    if (this.initialNumberOfZombies > this.world.size()) {
+      throw new RangeError(
+        `The number of zombies in the world cannot be greater than the number of cells`
+      );
     }
-  } while (zombies.length < number_of_zombies);
+  }
+
+  numZombies() {
+    return this.zombies.length;
+  }
 }
 
-function render_game(world, zombies) {
-  /* eslint-disable no-console */
-  console.clear();
-
-  /* eslint-disable no-console */
-  console.log(print_world(world));
-
-  /* eslint-disable no-console */
-  console.log(`Zombies: ${zombies.length}`);
-
-  /* eslint-disable no-console */
-  console.log("Ctrl-c to exit");
-}
-
-function createInterval(f, interval, world, zombies) {
-  setInterval(function () {
-    f(world, zombies);
-  }, interval);
-}
-
-function start_game() {
-  populate_world_with_zombies_in_random_positions(
-    world,
-    zombies,
-    number_of_zombies
-  );
-  createInterval(render_game, 500, world, zombies);
-}
-
-export default start_game;
+export default Game;
