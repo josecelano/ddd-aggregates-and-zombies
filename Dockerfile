@@ -10,7 +10,7 @@ COPY . .
 
 RUN yarn test:coverage && yarn build
 
-FROM node:14.17-slim as app
+FROM node:14.17-alpine3.13 as app
 
 COPY --from=builder /usr/src/app/lib /usr/src/app
 
