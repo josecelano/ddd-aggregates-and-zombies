@@ -37,7 +37,7 @@ function add_zombie_in_an_empty_cell(world, zombies) {
   }
 }
 
-function render_world(world, zombies) {
+function render_game(world, zombies) {
   /* eslint-disable no-console */
   console.clear();
 
@@ -60,7 +60,7 @@ function createInterval(f, interval, world, zombies) {
 function start_game() {
   populate_world_zombies(world, zombies);
   createInterval(add_zombie_in_an_empty_cell, 300, world, zombies);
-  createInterval(render_world, 500, world, zombies);
+  createInterval(render_game, 500, world, zombies);
 }
 
 export default start_game;
