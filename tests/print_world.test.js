@@ -14,7 +14,7 @@ it("should print a world with a zombie in a plain text format", () => {
   const world = new ApocalypticWorld(1, 1);
   const coordinate = new Coordinate(0, 0);
 
-  world.addZombie(coordinate);
+  world.markCellAsOccupiedByAZombie(coordinate);
 
   const output = print_world(world);
 

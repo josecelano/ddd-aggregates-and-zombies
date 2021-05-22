@@ -14,18 +14,18 @@ class ApocalypticWorld {
     return this.columns;
   }
 
-  addZombie(coordinate) {
+  markCellAsOccupiedByAZombie(coordinate) {
     this.guardThatIsInside(coordinate);
     this.setGridCellContent(coordinate, true);
+  }
+
+  cellIsOccupiedByAZombie(coordinate) {
+    return this.getCellContent(coordinate) !== null;
   }
 
   getCellContent(coordinate) {
     this.guardThatIsInside(coordinate);
     return this.getGridCellContent(coordinate);
-  }
-
-  cellConstainsZombie(coordinate) {
-    return this.getCellContent(coordinate) !== null;
   }
 
   guardThatIsInside(coordinate) {

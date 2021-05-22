@@ -15,7 +15,7 @@ function print_world(world) {
 function print_row(world, rowIndex) {
   let row = "";
   for (let columnIndex = 0; columnIndex < world.numColumns(); columnIndex++) {
-    if (world.cellConstainsZombie(new Coordinate(rowIndex, columnIndex))) {
+    if (world.cellIsOccupiedByAZombie(new Coordinate(rowIndex, columnIndex))) {
       row = `${row}${zombieCell}`;
     } else {
       row = `${row}${emptyCell}`;

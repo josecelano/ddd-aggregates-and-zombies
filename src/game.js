@@ -17,7 +17,7 @@ function populate_world_zombies(world, zombies) {
       if (addZombie) {
         const zombie = new Zombie();
         zombies.push(zombie);
-        world.addZombie(new Coordinate(i, j));
+        world.markCellAsOccupiedByAZombie(new Coordinate(i, j));
       }
     }
   }
@@ -27,10 +27,10 @@ function add_zombie_in_an_empty_cell(world, zombies) {
   for (let i = 0; i < world.numRows(); i++) {
     for (let j = 0; j < world.numColumns(); j++) {
       const coordinate = new Coordinate(i, j);
-      if (!world.cellConstainsZombie(coordinate)) {
+      if (!world.cellIsOccupiedByAZombie(coordinate)) {
         const zombie = new Zombie();
         zombies.push(zombie);
-        world.addZombie(coordinate);
+        world.markCellAsOccupiedByAZombie(coordinate);
         return;
       }
     }

@@ -12,7 +12,7 @@ it("could have a zombie in a world cell", () => {
   const apocalypticWorld = new ApocalypticWorld(10, 11);
   const coordinate = new Coordinate(0, 0);
 
-  apocalypticWorld.addZombie(coordinate);
+  apocalypticWorld.markCellAsOccupiedByAZombie(coordinate);
   const content = apocalypticWorld.getCellContent(coordinate);
 
   expect(content).toBe(true);
@@ -29,13 +29,13 @@ it("should allow to add zombies only inside", () => {
   const apocalypticWorld = new ApocalypticWorld(1, 1);
 
   const attemptToAddAZombieInABadRow = () => {
-    apocalypticWorld.addZombie(new Coordinate(1, 0));
+    apocalypticWorld.markCellAsOccupiedByAZombie(new Coordinate(1, 0));
   };
 
   expect(attemptToAddAZombieInABadRow).toThrow(RangeError);
 
   const attemptToAddAZombieInABadColumn = () => {
-    apocalypticWorld.addZombie(new Coordinate(0, 1));
+    apocalypticWorld.markCellAsOccupiedByAZombie(new Coordinate(0, 1));
   };
 
   expect(attemptToAddAZombieInABadColumn).toThrow(RangeError);
