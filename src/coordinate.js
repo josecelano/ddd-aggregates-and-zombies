@@ -25,7 +25,10 @@ class Coordinate {
   }
 
   equalsTo(coordinate) {
-    return this.rowNumber === coordinate.rowNumber && this.columNumber === coordinate.columNumber;
+    return (
+      this.rowNumber === coordinate.rowNumber &&
+      this.columNumber === coordinate.columNumber
+    );
   }
 
   toString() {

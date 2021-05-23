@@ -1,4 +1,4 @@
-import ApocalypticWorld from "../src/apocalyptic_world"
+import ApocalypticWorld from "../src/apocalyptic_world";
 import Coordinate from "../src/coordinate";
 import Zombie from "../src/zombie";
 

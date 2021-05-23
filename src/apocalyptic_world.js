@@ -28,7 +28,7 @@ class ApocalypticWorld {
 
   markCellAsEmpty(coordinate) {
     this.grid.setGridCellContent(coordinate, CELL_EMPTY);
-  }  
+  }
 
   cellIsOccupiedByAZombie(coordinate) {
     return this.grid.getGridCellContent(coordinate);

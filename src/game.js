@@ -17,13 +17,13 @@ class Game {
     this.populateWorldWithZombiesInRandomPositions();
   }
 
-  populateWorldWithZombiesInRandomPositions() { 
+  populateWorldWithZombiesInRandomPositions() {
     do {
       const coordinate = generateRamdomCoordinate(
         this.world.numRows(),
         this.world.numColumns()
       );
-  
+
       if (!this.world.cellIsOccupiedByAZombie(coordinate)) {
         const zombie = new Zombie(coordinate);
         this.zombies.push(zombie);
@@ -36,7 +36,7 @@ class Game {
     this.zombies.forEach((zombie) => {
       const currentCoordinate = zombie.getCoordinate();
       const newCoordinate = zombie.move(this.world);
-      
+
       if (newCoordinate.equalsTo(currentCoordinate)) {
         return;
       }
@@ -67,12 +67,12 @@ class Game {
 
   processInputFromKeyboard() {
     const { stdin } = process;
-  
+
     stdin.setRawMode(true);
     stdin.setEncoding("utf8");
     // Begin reading from stdin so the process does not exit.
     stdin.resume();
-  
+
     stdin.on("data", function (key) {
       // ctrl-c to exit
       if (key === "\u0003") {
@@ -80,7 +80,7 @@ class Game {
       }
       // write the key to stdout
       process.stdout.write(key);
-    })
+    });
   }
 
   guardThatZombiesNumberDoesNotExceedTheNumberOfCells() {
@@ -97,7 +97,7 @@ class Game {
         `The cell ${coordinate.toString()} is already occupied by another zombie`
       );
     }
-  }  
+  }
 
   numZombies() {
     return this.zombies.length;

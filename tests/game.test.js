@@ -10,7 +10,9 @@ it("should not create more zombies than cells", () => {
     new Game(rows, columns, initialNumberOfZombies);
   };
 
-  expect(() => { t(); }).toThrow(RangeError);
+  expect(() => {
+    t();
+  }).toThrow(RangeError);
 });
 
 it("should populate the world with zomibes when it's started", () => {
@@ -18,7 +20,7 @@ it("should populate the world with zomibes when it's started", () => {
   const columns = 1;
   const initialNumberOfZombies = 1;
 
-  let game = new Game(rows, columns, initialNumberOfZombies);
+  const game = new Game(rows, columns, initialNumberOfZombies);
 
   game.startGame();
 
@@ -30,13 +32,15 @@ it("should not allow to place more than one zombie in a cell", () => {
   const columns = 1;
   const initialNumberOfZombies = 1;
 
-  let game = new Game(rows, columns, initialNumberOfZombies);
+  const game = new Game(rows, columns, initialNumberOfZombies);
 
   game.markCellAsOccupiedByAZombie(new Coordinate(0, 0));
-  
+
   const t = () => {
     game.markCellAsOccupiedByAZombie(new Coordinate(0, 0));
   };
 
-  expect(() => { t(); }).toThrow(RangeError);
+  expect(() => {
+    t();
+  }).toThrow(RangeError);
 });
