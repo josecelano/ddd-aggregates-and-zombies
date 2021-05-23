@@ -27,6 +27,10 @@ class Coordinate {
   equalsTo(coordinate) {
     return this.rowNumber === coordinate.rowNumber && this.columNumber === coordinate.columNumber;
   }
+
+  toString() {
+    return `(${this.rowNumber},${this.columNumber})`;
+  }
 }
 
 export default Coordinate;

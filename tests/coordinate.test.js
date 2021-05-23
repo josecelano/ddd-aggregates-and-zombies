@@ -48,3 +48,9 @@ it("should contain only zero or positive values for colums", () => {
     }).toThrow(RangeError);
   });
 });
+
+it("should print the coordinate as string", () => {
+  const coordinate = new Coordinate(1, 2);
+
+  expect(coordinate.toString()).toBe('(1,2)');
+});
