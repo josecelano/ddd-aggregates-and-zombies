@@ -3,7 +3,16 @@
 * Node 14.17.0
 * Docker 20.10.5
 
-## Usage
+## Install
+
+From repo:
+```
+git@github.com:josecelano/ddd-aggregates-and-zombies.git
+./bin/docker/build.sh
+./bin/docker/build.sh
+```
+
+## Development
 
 Build docker image:
 ```
@@ -12,7 +21,7 @@ Build docker image:
 
 Run app:
 ```
-./bin/docker/run.sh
+./bin/docker/build.sh
 ```
 
 Run and connect to docker image on development environment:
@@ -27,13 +36,6 @@ Run tests:
 
 ## TODO
 
- * Move zombies around.
- * Zombies have to be independent objects. Create all all them at the beginning and assign them an initial cell.
- * Zombies just move randomly to an empty adyacent cell.
- * Add to index the game loop:
-    ```
-    do {
-        zombie.move(world);
-        print_world(world);
-    } while key ESC pressed ...
-    ```
+ * Move zombies randomly in one of the 8 possible directions when the adyacent cell is empty.
+ * Extract non testable from game and complete testing for the class.
+ * Force concurrency problems: two zombies in the same cell.
