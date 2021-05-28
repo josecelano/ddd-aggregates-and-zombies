@@ -32,7 +32,7 @@ class Grid {
 
   getGridPositionFrom(coordinate) {
     this.guardThatIsInside(coordinate);
-    return coordinate.row() * this.numColumns() + coordinate.column();
+    return coordinate.row * this.numColumns() + coordinate.column;
   }
 
   guardThatIsInside(coordinate) {
@@ -42,7 +42,7 @@ class Grid {
   }
 
   isInside(coordinate) {
-    return coordinate.row() < this.rows && coordinate.column() < this.columns;
+    return coordinate.row < this.rows && coordinate.column < this.columns;
   }
 }
 

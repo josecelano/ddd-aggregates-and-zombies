@@ -31,7 +31,11 @@ class ApocalypticWorld {
   }
 
   cellIsOccupiedByAZombie(coordinate) {
-    return this.grid.getGridCellContent(coordinate);
+    return this.grid.getGridCellContent(coordinate) == CELL_OCCUPIED;
+  }
+
+  cellIsEmpty(coordinate) {
+    return this.grid.getGridCellContent(coordinate) == CELL_EMPTY;
   }
 
   isInside(coordinate) {

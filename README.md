@@ -39,3 +39,9 @@ Run tests:
  * Move zombies randomly in one of the 8 possible directions when the adyacent cell is empty.
  * Extract non testable from game and complete testing for the class.
  * Force concurrency problems: two zombies in the same cell.
+
+Strategy to implement feature to move zombies randomly:
+
+ * Calculate the list of adjacent coordinates for the zombie current coordinate position.
+ * Remove already occupied cells from the previous list (AppocalypticWorld class).
+ * Use previous list of potencial cells to move and choose one randomly (Zombie class).

@@ -11,8 +11,8 @@ class Zombie {
 
   move(world) {
     const newCoordinate = new Coordinate(
-      this.coordinate.row(),
-      this.coordinate.column() + 1
+      this.coordinate.row,
+      this.coordinate.column + 1
     );
 
     if (!world.isInside(newCoordinate)) {
