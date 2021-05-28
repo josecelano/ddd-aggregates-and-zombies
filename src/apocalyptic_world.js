@@ -1,3 +1,4 @@
+import CoordinateCollection from "./coordinate_collection";
 import Grid from "./grid";
 
 const CELL_OCCUPIED = true;
@@ -40,6 +41,14 @@ class ApocalypticWorld {
 
   isInside(coordinate) {
     return this.grid.isInside(coordinate);
+  }
+
+  filterEmptyCoordinatesFromCollection(coordinateCollection) {
+    return new CoordinateCollection(
+      coordinateCollection.coordinates.filter((coordinate) => {
+        return this.isInside(coordinate) && this.cellIsEmpty(coordinate);
+      })
+    );
   }
 }
 

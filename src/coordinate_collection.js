@@ -1,5 +1,12 @@
+import { getRandomItemFromArray } from "./random";
+
 class CoordinateCollection {
   constructor(coordinates) {
+    if (!Array.isArray(coordinates)) {
+      throw new RangeError(
+        `The coordinate collection constructor expects an array instead of ${coordinates}`
+      );
+    }
     this.coordinates = coordinates;
   }
 
@@ -27,6 +34,10 @@ class CoordinateCollection {
     }
 
     return true;
+  }
+
+  getRandomCoordinate() {
+    return getRandomItemFromArray(this.coordinates);
   }
 }
 

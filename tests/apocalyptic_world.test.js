@@ -1,5 +1,6 @@
 import ApocalypticWorld from "../src/apocalyptic_world";
 import Coordinate from "../src/coordinate";
+import CoordinateCollection from "../src/coordinate_collection";
 
 it("should be a grid of n rows x m columns", () => {
   const apocalypticWorld = new ApocalypticWorld(10, 11);
@@ -52,4 +53,26 @@ it("should only allow to mark valid cells", () => {
 it("should return the world size in number of cells", () => {
   const apocalypticWorld = new ApocalypticWorld(2, 2);
   expect(apocalypticWorld.size()).toBe(4);
+});
+
+it("should filter the valid and emptycoordinates from a collection of coordinates", () => {
+  const apocalypticWorld = new ApocalypticWorld(1, 2);
+
+  /*
+    (0,0) (0,1)
+    EMPTY OCCUPIED
+  */
+
+  const allCoordinates = new CoordinateCollection([
+    new Coordinate(0, 0),
+    new Coordinate(0, 1),
+  ]);
+
+  apocalypticWorld.markCellAsOccupiedByAZombie(new Coordinate(0, 1));
+
+  expect(
+    apocalypticWorld
+      .filterEmptyCoordinatesFromCollection(allCoordinates)
+      .equalsTo(new CoordinateCollection([new Coordinate(0, 0)]))
+  ).toBe(true);
 });

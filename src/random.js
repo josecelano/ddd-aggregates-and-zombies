@@ -1,9 +1,13 @@
 import Coordinate from "./coordinate";
 
-function generateRamdomCoordinate(rows, columns) {
+export function generateRamdomCoordinate(rows, columns) {
   const randomRow = randomIntFromInterval(0, rows - 1);
   const randomColumn = randomIntFromInterval(0, columns - 1);
   return new Coordinate(randomRow, randomColumn);
+}
+
+export function getRandomItemFromArray(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 function randomIntFromInterval(min, max) {

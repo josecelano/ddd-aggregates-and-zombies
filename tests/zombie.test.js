@@ -14,7 +14,7 @@ it("should move to the right", () => {
   const coordinate = new Coordinate(0, 0);
   const zombie = new Zombie(coordinate);
 
-  const newCoordiante = zombie.move(world);
+  const newCoordiante = zombie.moveToTheRight(world);
 
   expect(newCoordiante.equalsTo(new Coordinate(0, 1))).toBe(true);
 });
@@ -24,7 +24,7 @@ it("should not move outside the world", () => {
   const coordinate = new Coordinate(1, 1);
   const zombie = new Zombie(coordinate);
 
-  const newCoordiante = zombie.move(world);
+  const newCoordiante = zombie.moveToTheRight(world);
 
   expect(newCoordiante.equalsTo(coordinate)).toBe(true);
 });
@@ -39,5 +39,5 @@ it("should not move to another cells occupied by another zombie", () => {
 
   world.markCellAsOccupiedByAZombie(new Coordinate(0, 1));
 
-  expect(zombie.move(world).equalsTo(coordinate)).toBe(true);
+  expect(zombie.moveToTheRight(world).equalsTo(coordinate)).toBe(true);
 });

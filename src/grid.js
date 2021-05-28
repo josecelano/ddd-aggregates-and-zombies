@@ -37,7 +37,9 @@ class Grid {
 
   guardThatIsInside(coordinate) {
     if (!this.isInside(coordinate)) {
-      throw new RangeError(`The coordinate must be inside the grid`);
+      throw new RangeError(
+        `The coordinate ${coordinate.toString()} must be inside the grid`
+      );
     }
   }
 

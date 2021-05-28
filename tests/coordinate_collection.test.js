@@ -64,3 +64,11 @@ describe("it should compare two coordinate collections", () => {
     expect(coordinateCollection1.equalsTo(coordinateCollection2)).toBe(false);
   });
 });
+
+it("should return a ramdom coordinate from the collection", () => {
+  const coordinateCollection = new CoordinateCollection([new Coordinate(0, 0)]);
+
+  expect(
+    coordinateCollection.getRandomCoordinate().equalsTo(new Coordinate(0, 0))
+  ).toBe(true);
+});

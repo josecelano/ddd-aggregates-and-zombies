@@ -9,7 +9,7 @@ class Zombie {
     return this.coordinate;
   }
 
-  move(world) {
+  moveToTheRight(world) {
     const newCoordinate = new Coordinate(
       this.coordinate.row,
       this.coordinate.column + 1
@@ -24,6 +24,16 @@ class Zombie {
     }
 
     this.coordinate = newCoordinate;
+
+    return this.coordinate;
+  }
+
+  moveRandomly(world) {
+    const emptyAdjacentCoordinates = world.filterEmptyCoordinatesFromCollection(
+      this.coordinate.adjacentCoordinates()
+    );
+
+    this.coordinate = emptyAdjacentCoordinates.getRandomCoordinate();
 
     return this.coordinate;
   }
