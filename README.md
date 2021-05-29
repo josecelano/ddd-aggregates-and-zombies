@@ -37,4 +37,3 @@ Run tests:
 ## TODO
 
  * Github workflow to run tests and publish docker image.
- * Force concurrency problems: two zombies in the same cell.

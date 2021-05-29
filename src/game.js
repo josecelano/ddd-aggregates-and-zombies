@@ -10,6 +10,7 @@ class Game {
     this.initialNumberOfZombies = initialNumberOfZombies;
     this.world = new ApocalypticWorld(rows, columns);
     this.zombies = [];
+    this.zombiesThinkingMovementIntervals = [];
     this.zombiesMovementIntervals = [];
     this.guardThatZombiesNumberDoesNotExceedTheNumberOfCells();
   }
@@ -38,21 +39,38 @@ class Game {
 
   moveZombiesRandomly() {
     this.zombies.forEach((zombie) => {
-      const zombieSpeedsInMiliseconds = [500, 1000, 1500];
-      const speedOfZombie = getRandomItemFromArray(zombieSpeedsInMiliseconds);
-      const interval = setInterval(
+      const zombieSpeedsInMiliseconds = [500, 1000, 1500, 2000];
+      const zoombieThinkingSpeed = getRandomItemFromArray(zombieSpeedsInMiliseconds);
+      const zoombieWalkingSpeed = getRandomItemFromArray(zombieSpeedsInMiliseconds);
+
+      // Create interval to think
+      const thinkingInterval = setInterval(
         function (game, zombie) {
-          game.moveZombieRandomly(zombie);
+          zombie.thinkWhereToWalk(game.world);
         },
-        speedOfZombie,
+        zoombieThinkingSpeed,
         this,
         zombie
       );
-      this.zombiesMovementIntervals.push(interval);
+      this.zombiesThinkingMovementIntervals.push(thinkingInterval);
+
+      // Create interval to walk
+      const walkingInterval = setInterval(
+        function (game, zombie) {
+          zombie.walkTo(game.world);
+        },
+        zoombieWalkingSpeed,
+        this,
+        zombie
+      );
+      this.zombiesMovementIntervals.push(walkingInterval);
     }, this);
   }
 
   cleanIntervals() {
+    this.zombiesThinkingMovementIntervals.forEach((interval) => {
+      clearInterval(interval);
+    });
     this.zombiesMovementIntervals.forEach((interval) => {
       clearInterval(interval);
     });

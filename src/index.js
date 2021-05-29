@@ -6,9 +6,9 @@ const CTRL_C = "\u0003";
 
 // Game configuration
 const KEY_TO_STOP_THE_GAME = CTRL_C;
-const percentageOfCellsOccupiedByZombies = 10; // 100% means all cells with a zombie
-const rows = 45;
-const columns = 30;
+const percentageOfCellsOccupiedByZombies = 4; // 100% means all cells with a zombie
+const rows = 30;
+const columns = 20;
 const initialNumberOfZombies = Math.floor(
   (rows * columns * percentageOfCellsOccupiedByZombies) / 100
 );
