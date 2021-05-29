@@ -1,17 +1,7 @@
 class Coordinate {
   constructor(row, column) {
-    if (!this.isValidRow(row)) {
-      throw new RangeError(
-        `The coordinate row must be a positive integer instead of ${row}`
-      );
-    }
-
-    if (!this.isValidColumn(column)) {
-      throw new RangeError(
-        `The coordinate column must be a positive integer instead of ${column}`
-      );
-    }
-
+    this.guardThatRowIsValid(row);
+    this.guardThatColumnIsValid(column);
     this.row = row;
     this.column = column;
   }
@@ -30,6 +20,22 @@ class Coordinate {
 
   isValidColumn(column) {
     return Number.isInteger(column) && column >= 0;
+  }
+
+  guardThatRowIsValid(row) {
+    if (!this.isValidRow(row)) {
+      throw new RangeError(
+        `The coordinate row must be a positive integer instead of ${row}`
+      );
+    }
+  }
+
+  guardThatColumnIsValid(column) {
+    if (!this.isValidColumn(column)) {
+      throw new RangeError(
+        `The coordinate column must be a positive integer instead of ${column}`
+      );
+    }
   }
 }
 
