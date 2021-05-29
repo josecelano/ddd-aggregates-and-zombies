@@ -16,6 +16,10 @@ class CoordinateCollection {
     return this.coordinates.length;
   }
 
+  isEmpty() {
+    return this.coordinates.length === 0;
+  }
+
   contains(coordinate) {
     return this.coordinates.some((currentCoordinate) =>
       currentCoordinate.equalsTo(coordinate)

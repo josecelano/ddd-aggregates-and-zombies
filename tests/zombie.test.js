@@ -29,9 +29,9 @@ describe("random movement", () => {
 
     world.markCellAsOccupiedByAZombie(coordinate);
 
-    const newCoordiante = zombie.moveRandomly(world);
+    zombie.moveRandomly(world);
 
-    expect(newCoordiante.equalsTo(new Coordinate(0, 1))).toBe(true);
+    expect(zombie.getCoordinate().equalsTo(new Coordinate(0, 1))).toBe(true);
   });
 
   it("should staty at the same cell if it cant move to any cell", () => {
@@ -47,8 +47,8 @@ describe("random movement", () => {
     world.markCellAsOccupiedByAZombie(coordinate1);
     world.markCellAsOccupiedByAZombie(coordinate2);
 
-    const newCoordiante = zombie1.moveRandomly(world);
+    zombie1.moveRandomly(world);
 
-    expect(newCoordiante.equalsTo(coordinate1)).toBe(true);
+    expect(zombie1.getCoordinate().equalsTo(coordinate1)).toBe(true);
   });
 });

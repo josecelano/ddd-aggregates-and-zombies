@@ -1,6 +1,7 @@
 class Zombie {
   constructor(coordinate) {
     this.coordinate = coordinate;
+    this.nextCoordinate = null;
   }
 
   getCoordinate() {
@@ -8,26 +9,31 @@ class Zombie {
   }
 
   moveRandomly(world) {
+    this.nextCoordinate = this.thinkWhereToMove(world);
+    this.walkTo(world);
+  }
+
+  thinkWhereToMove(world) {
     const emptyAdjacentCoordinates = world.getEmptyAdjacentCoordinates(
       this.coordinate
     );
 
-    if (emptyAdjacentCoordinates.length() == 0) {
-      // The zombie can't move anywhere
+    if (emptyAdjacentCoordinates.isEmpty()) {
+      // The zombie can't move anywhere -> stay at current coordinate
       return this.coordinate;
     }
 
-    const currentCoordinate = this.coordinate;
-    const newCoordinate = emptyAdjacentCoordinates.getRandomCoordinate();
+    return emptyAdjacentCoordinates.getRandomCoordinate();
+  }
 
-    this.updatePositionInTheWorld(world, currentCoordinate, newCoordinate);
-    this.updateCoordinate(newCoordinate);
-
-    return this.coordinate;
+  walkTo(world) {
+    this.updatePositionInTheWorld(world, this.coordinate, this.nextCoordinate);
+    this.updateCoordinate(this.nextCoordinate);
   }
 
   updateCoordinate(coordinate) {
     this.coordinate = coordinate;
+    this.nextCoordinate = null;
     return this.coordinate;
   }
 
