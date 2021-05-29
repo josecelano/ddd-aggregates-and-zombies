@@ -20,6 +20,8 @@ class Game {
   }
 
   populateWorldWithZombiesInRandomPositions() {
+    if (this.initialNumberOfZombies == 0) return;
+
     do {
       const coordinate = generateRamdomCoordinate(
         this.world.numRows(),
