@@ -36,4 +36,5 @@ Run tests:
 
 ## TODO
 
+ * Add missing tests from Game.
  * Github workflow to run tests and publish docker image.
