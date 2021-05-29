@@ -55,7 +55,7 @@ it("should render the game in text format", () => {
 
   const output = game.render(new Coordinate(0, 0));
 
-  expect(output).toBe(" .. \nZombies: 0\nCtrl-c to exit");
+  expect(output).toBe(" .. \nCells: 1 Zombies: 0\nCtrl-c to exit");
 });
 
 it("should move zombies around", () => {
@@ -72,7 +72,7 @@ it("should move zombies around", () => {
   const rows = 1;
   const columns = 2;
   const initialNumberOfZombies = 1;
-  const gameMenu = "\nZombies: 1\nCtrl-c to exit";
+  const gameMenu = "\nCells: 2 Zombies: 1\nCtrl-c to exit";
 
   const game = new Game(rows, columns, initialNumberOfZombies);
 
@@ -105,7 +105,7 @@ it("should not move zombies where they can not go anywhere", () => {
   const rows = 1;
   const columns = 2;
   const initialNumberOfZombies = 2;
-  const gameMenu = "\nZombies: 2\nCtrl-c to exit";
+  const gameMenu = "\nCells: 2 Zombies: 2\nCtrl-c to exit";
 
   const game = new Game(rows, columns, initialNumberOfZombies);
 

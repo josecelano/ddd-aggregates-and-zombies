@@ -67,8 +67,16 @@ class Game {
   }
 
   render() {
+    return `${this.renderWorld()}${this.renderGameFooter()}`;
+  }
+
+  renderWorld() {
+    return print_world(this.world);
+  }
+
+  renderGameFooter() {
     return (
-      `${print_world(this.world)}Zombies: ${this.zombies.length}\n` +
+      `Cells: ${this.numCells()} Zombies: ${this.numZombies()}\n` +
       `Ctrl-c to exit`
     );
   }
@@ -85,6 +93,10 @@ class Game {
 
   numZombies() {
     return this.zombies.length;
+  }
+
+  numCells() {
+    return this.world.size();
   }
 }
 
