@@ -40,31 +40,41 @@ class Game {
   moveZombiesRandomly() {
     this.zombies.forEach((zombie) => {
       const zombieSpeedsInMiliseconds = [500, 1000, 1500, 2000];
-      const zoombieThinkingSpeed = getRandomItemFromArray(zombieSpeedsInMiliseconds);
-      const zoombieWalkingSpeed = getRandomItemFromArray(zombieSpeedsInMiliseconds);
 
-      // Create interval to think
-      const thinkingInterval = setInterval(
-        function (game, zombie) {
-          zombie.thinkWhereToWalk(game.world);
-        },
-        zoombieThinkingSpeed,
-        this,
-        zombie
+      const zoombieThinkingSpeed = getRandomItemFromArray(
+        zombieSpeedsInMiliseconds
       );
-      this.zombiesThinkingMovementIntervals.push(thinkingInterval);
+      const zoombieWalkingSpeed = getRandomItemFromArray(
+        zombieSpeedsInMiliseconds
+      );
 
-      // Create interval to walk
-      const walkingInterval = setInterval(
-        function (game, zombie) {
-          zombie.walkTo(game.world);
-        },
-        zoombieWalkingSpeed,
-        this,
-        zombie
-      );
-      this.zombiesMovementIntervals.push(walkingInterval);
+      this.makeZombieThinkOnEachInterval(this, zombie, zoombieThinkingSpeed);
+      this.makeZombieWalkOnEachInterval(this, zombie, zoombieWalkingSpeed);
     }, this);
+  }
+
+  makeZombieThinkOnEachInterval(game, zombie, zoombieThinkingSpeed) {
+    const thinkingInterval = setInterval(
+      function (game, zombie) {
+        zombie.thinkWhereToWalk(game.world);
+      },
+      zoombieThinkingSpeed,
+      this,
+      zombie
+    );
+    this.zombiesThinkingMovementIntervals.push(thinkingInterval);
+  }
+
+  makeZombieWalkOnEachInterval(game, zombie, zoombieWalkingSpeed) {
+    const walkingInterval = setInterval(
+      function (game, zombie) {
+        zombie.walkTo(game.world);
+      },
+      zoombieWalkingSpeed,
+      this,
+      zombie
+    );
+    this.zombiesMovementIntervals.push(walkingInterval);
   }
 
   cleanIntervals() {
