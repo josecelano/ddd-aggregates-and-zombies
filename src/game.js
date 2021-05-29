@@ -1,5 +1,5 @@
 import ApocalypticWorld from "./apocalyptic_world";
-import print_world from "./print_world";
+import printWorld from "./print_world";
 import { generateRamdomCoordinate, getRandomItemFromArray } from "./random";
 import Zombie from "./zombie";
 
@@ -99,7 +99,7 @@ class Game {
   }
 
   renderWorld() {
-    return print_world(this.world);
+    return printWorld(this.world);
   }
 
   renderGameFooter() {

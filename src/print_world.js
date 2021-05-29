@@ -3,16 +3,16 @@ import Coordinate from "./coordinate";
 const emptyCell = " .. ";
 const zombieCell = " 🧟 ";
 
-function print_world(world) {
+function printWorld(world) {
   let output = "";
   for (let rowIndex = 0; rowIndex < world.numRows(); rowIndex++) {
-    const row = print_row(world, rowIndex);
+    const row = printRow(world, rowIndex);
     output = `${output}${row}\n`;
   }
   return output;
 }
 
-function print_row(world, rowIndex) {
+function printRow(world, rowIndex) {
   let row = "";
   for (let columnIndex = 0; columnIndex < world.numColumns(); columnIndex++) {
     if (world.cellIsOccupiedByAZombie(new Coordinate(rowIndex, columnIndex))) {
@@ -24,4 +24,4 @@ function print_row(world, rowIndex) {
   return row;
 }
 
-export default print_world;
+export default printWorld;
