@@ -44,3 +44,15 @@ it("should not allow to place more than one zombie in a cell", () => {
     t();
   }).toThrow(RangeError);
 });
+
+it("should render the game in text format", () => {
+  const rows = 1;
+  const columns = 1;
+  const initialNumberOfZombies = 0;
+
+  const game = new Game(rows, columns, initialNumberOfZombies);
+
+  const output = game.render(new Coordinate(0, 0));
+
+  expect(output).toBe(" .. \nZombies: 0\nCtrl-c to exit");
+});

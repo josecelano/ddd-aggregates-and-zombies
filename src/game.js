@@ -52,35 +52,10 @@ class Game {
   }
 
   render() {
-    /* eslint-disable no-console */
-    console.clear();
-
-    /* eslint-disable no-console */
-    console.log(print_world(this.world));
-
-    /* eslint-disable no-console */
-    console.log(`Zombies: ${this.zombies.length}`);
-
-    /* eslint-disable no-console */
-    console.log("Ctrl-c to exit");
-  }
-
-  processInputFromKeyboard() {
-    const { stdin } = process;
-
-    stdin.setRawMode(true);
-    stdin.setEncoding("utf8");
-    // Begin reading from stdin so the process does not exit.
-    stdin.resume();
-
-    stdin.on("data", function (key) {
-      // ctrl-c to exit
-      if (key === "\u0003") {
-        process.exit();
-      }
-      // write the key to stdout
-      process.stdout.write(key);
-    });
+    return (
+      `${print_world(this.world)}Zombies: ${this.zombies.length}\n` +
+      `Ctrl-c to exit`
+    );
   }
 
   guardThatZombiesNumberDoesNotExceedTheNumberOfCells() {
