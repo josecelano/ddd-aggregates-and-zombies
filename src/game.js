@@ -48,12 +48,12 @@ class Game {
         zombieSpeedsInMiliseconds
       );
 
-      this.makeZombieThinkOnEachInterval(this, zombie, zoombieThinkingSpeed);
-      this.makeZombieWalkOnEachInterval(this, zombie, zoombieWalkingSpeed);
+      this.makeZombieThinkOnEachInterval(zombie, zoombieThinkingSpeed);
+      this.makeZombieWalkOnEachInterval(zombie, zoombieWalkingSpeed);
     }, this);
   }
 
-  makeZombieThinkOnEachInterval(game, zombie, zoombieThinkingSpeed) {
+  makeZombieThinkOnEachInterval(zombie, zoombieThinkingSpeed) {
     const thinkingInterval = setInterval(
       function (game, zombie) {
         zombie.thinkWhereToWalk(game.world);
@@ -65,7 +65,7 @@ class Game {
     this.zombiesThinkingMovementIntervals.push(thinkingInterval);
   }
 
-  makeZombieWalkOnEachInterval(game, zombie, zoombieWalkingSpeed) {
+  makeZombieWalkOnEachInterval(zombie, zoombieWalkingSpeed) {
     const walkingInterval = setInterval(
       function (game, zombie) {
         zombie.walkTo(game.world);
