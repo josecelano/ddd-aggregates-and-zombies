@@ -10,11 +10,13 @@ class Game {
     this.initialNumberOfZombies = initialNumberOfZombies;
     this.world = new ApocalypticWorld(rows, columns);
     this.zombies = [];
+    this.zombiesMovementIntervals = [];
     this.guardThatZombiesNumberDoesNotExceedTheNumberOfCells();
   }
 
-  startGame() {
+  start() {
     this.populateWorldWithZombiesInRandomPositions();
+    this.moveZombiesRandomly();
   }
 
   populateWorldWithZombiesInRandomPositions() {
@@ -32,10 +34,28 @@ class Game {
     } while (this.zombies.length < this.initialNumberOfZombies);
   }
 
-  moveZombies() {
+  moveZombiesRandomly() {
     this.zombies.forEach((zombie) => {
-      zombie.moveRandomly(this.world);
+      const interval = setInterval(
+        function (game, zombie) {
+          game.moveZombieRandomly(zombie);
+        },
+        500,
+        this,
+        zombie
+      );
+      this.zombiesMovementIntervals.push(interval);
+    }, this);
+  }
+
+  cleanIntervals() {
+    this.zombiesMovementIntervals.forEach((interval) => {
+      clearInterval(interval);
     });
+  }
+
+  moveZombieRandomly(zombie) {
+    zombie.moveRandomly(this.world);
   }
 
   markCellAsOccupiedByAZombie(coordinate) {

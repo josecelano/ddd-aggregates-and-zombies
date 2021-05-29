@@ -22,7 +22,8 @@ it("should populate the world with zomibes when it's started", () => {
 
   const game = new Game(rows, columns, initialNumberOfZombies);
 
-  game.startGame();
+  game.start();
+  game.cleanIntervals();
 
   expect(game.numZombies()).toBe(1);
 });
@@ -76,7 +77,7 @@ it("should move zombies around", () => {
   const game = new Game(rows, columns, initialNumberOfZombies);
 
   game.populateWorldWithZombiesInRandomPositions();
-  game.moveZombies();
+  game.moveZombiesRandomly();
 
   const output = game.render();
   let finalOutputValid = false;
@@ -84,6 +85,8 @@ it("should move zombies around", () => {
   if (output == ` ..  🧟 ${gameMenu}` || output == ` 🧟  .. ${gameMenu}`) {
     finalOutputValid = true;
   }
+
+  game.cleanIntervals();
 
   expect(finalOutputValid).toBe(true);
 });
@@ -107,9 +110,11 @@ it("should not move zombies where they can not go anywhere", () => {
   const game = new Game(rows, columns, initialNumberOfZombies);
 
   game.populateWorldWithZombiesInRandomPositions();
-  game.moveZombies();
+  game.moveZombiesRandomly();
 
   const output = game.render();
+
+  game.cleanIntervals();
 
   expect(output).toBe(` 🧟  🧟 ${gameMenu}`);
 });

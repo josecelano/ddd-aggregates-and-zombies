@@ -1,4 +1,4 @@
-function waitUntilKeyPressed(exitGameKeyCode) {
+function waitUntilKeyPressed(keyCode, callback) {
   const { stdin } = process;
 
   stdin.setRawMode(true);
@@ -7,8 +7,8 @@ function waitUntilKeyPressed(exitGameKeyCode) {
   stdin.resume();
 
   stdin.on("data", function (key) {
-    if (key === exitGameKeyCode) {
-      process.exit();
+    if (key === keyCode) {
+      callback();
     }
     // write the key to stdout
     process.stdout.write(key);

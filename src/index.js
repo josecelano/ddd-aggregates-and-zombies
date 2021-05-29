@@ -1,7 +1,7 @@
 import Game from "./game";
 import waitUntilKeyPressed from "./input";
 
-// Constants
+// Game constants
 const CTRL_C = "\u0003";
 
 // Game configuration
@@ -17,9 +17,9 @@ const initialNumberOfZombies = Math.floor(
 const game = new Game(rows, columns, initialNumberOfZombies);
 
 // Game start
-game.startGame();
+game.start();
 
-// Game cron tasks
+// Game rendering
 setInterval(() => {
   /* eslint-disable no-console */
   console.clear();
@@ -27,9 +27,8 @@ setInterval(() => {
   console.log(game.render());
 }, 500);
 
-setInterval(() => {
-  game.moveZombies();
-}, 1500);
-
 // Game input
-waitUntilKeyPressed(KEY_TO_STOP_THE_GAME);
+waitUntilKeyPressed(KEY_TO_STOP_THE_GAME, () => {
+  game.cleanIntervals();
+  process.exit();
+});
