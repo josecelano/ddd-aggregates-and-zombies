@@ -30,8 +30,12 @@ class Zombie {
 
   moveRandomly(world) {
     const emptyAdjacentCoordinates = world.filterEmptyCoordinatesFromCollection(
-      this.coordinate.adjacentCoordinates()
+      world.grid.adjacentCoordinates(this.coordinate)
     );
+
+    if (emptyAdjacentCoordinates.length() == 0) {
+      return this.coordinate;
+    }
 
     this.coordinate = emptyAdjacentCoordinates.getRandomCoordinate();
 

@@ -1,4 +1,5 @@
 import Coordinate from "../src/coordinate";
+import CoordinateCollection from "../src/coordinate_collection";
 import Grid from "../src/grid";
 
 it("should be a grid of n rows x m columns", () => {
@@ -70,4 +71,86 @@ it("should allow to get cell content only inside", () => {
   };
 
   expect(attemptToGetCellContentInABadColumn).toThrow(RangeError);
+});
+
+describe("it should calculate the adjacent coordinates of a given coordinate", () => {
+  /*
+    top-left    top-middle    top-right
+    middle-left center        middle-right
+    bottom-left bottom-middle bottom-right
+  */
+
+  /*
+    (0,0) (0,1) (0,2)
+    (1,0) (1,1) (1,2)
+    (2,0) (2,1) (2,2)
+  */
+
+  const grid = new Grid(3, 3, null);
+
+  it("for the top-left corner coordinate (0, 0)", () => {
+    expect(
+      grid
+        .adjacentCoordinates(new Coordinate(0, 0))
+        .equalsTo(
+          new CoordinateCollection([
+            new Coordinate(0, 1),
+            new Coordinate(1, 1),
+            new Coordinate(1, 0),
+          ])
+        )
+    ).toBe(true);
+  });
+
+  it("for the first row of coordinates (0, X)", () => {
+    expect(
+      grid.adjacentCoordinates(new Coordinate(0, 1)).equalsTo(
+        new CoordinateCollection([
+          // Same row left and right
+          new Coordinate(0, 0),
+          new Coordinate(0, 2),
+          // Row below 3 cells
+          new Coordinate(1, 0),
+          new Coordinate(1, 1),
+          new Coordinate(1, 2),
+        ])
+      )
+    ).toBe(true);
+  });
+
+  it("for the first column of coordinates (X, 0)", () => {
+    expect(
+      grid.adjacentCoordinates(new Coordinate(1, 0)).equalsTo(
+        new CoordinateCollection([
+          // Same column top and below
+          new Coordinate(0, 0),
+          new Coordinate(2, 0),
+          // Right column 3 cells
+          new Coordinate(0, 1),
+          new Coordinate(1, 1),
+          new Coordinate(2, 1),
+        ])
+      )
+    ).toBe(true);
+  });
+
+  it("for any coordinate not in the first row or column (X, Y) where X and Y != 0", () => {
+    expect(
+      grid.adjacentCoordinates(new Coordinate(1, 1)).equalsTo(
+        new CoordinateCollection([
+          // Row above 3 cells
+          new Coordinate(0, 0),
+          new Coordinate(0, 1),
+          new Coordinate(0, 2),
+          // Same row left and rght cells
+          new Coordinate(1, 0),
+          new Coordinate(1, 2),
+          // Row below 3 cells
+          new Coordinate(2, 0),
+          new Coordinate(2, 1),
+          new Coordinate(2, 2),
+        ])
+      )
+    ).toBe(true);
+  });
 });
