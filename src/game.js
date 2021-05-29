@@ -86,7 +86,9 @@ class Game {
   guardThatZombiesNumberDoesNotExceedTheNumberOfCells() {
     if (this.initialNumberOfZombies > this.world.size()) {
       throw new RangeError(
-        `The number of zombies in the world cannot be greater than the number of cells`
+        `The initial number of zombies (${
+          this.initialNumberOfZombies
+        }) in the world cannot be greater than the number of cells (${this.world.size()})`
       );
     }
   }
