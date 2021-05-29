@@ -1,6 +1,6 @@
 import ApocalypticWorld from "./apocalyptic_world";
 import print_world from "./print_world";
-import generateRamdomCoordinate from "./random";
+import { generateRamdomCoordinate, getRandomItemFromArray } from "./random";
 import Zombie from "./zombie";
 
 class Game {
@@ -36,11 +36,13 @@ class Game {
 
   moveZombiesRandomly() {
     this.zombies.forEach((zombie) => {
+      const zombieSpeedsInMiliseconds = [500, 1000, 1500];
+      const speedOfZombie = getRandomItemFromArray(zombieSpeedsInMiliseconds);
       const interval = setInterval(
         function (game, zombie) {
           game.moveZombieRandomly(zombie);
         },
-        500,
+        speedOfZombie,
         this,
         zombie
       );
