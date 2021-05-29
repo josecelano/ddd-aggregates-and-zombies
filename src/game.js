@@ -27,7 +27,7 @@ class Game {
       if (!this.world.cellIsOccupiedByAZombie(coordinate)) {
         const zombie = new Zombie(coordinate);
         this.zombies.push(zombie);
-        this.markCellAsOccupiedByAZombie(coordinate);
+        this.world.markCellAsOccupiedByAZombie(coordinate);
       }
     } while (this.zombies.length < this.initialNumberOfZombies);
   }
@@ -41,14 +41,13 @@ class Game {
         return;
       }
 
-      this.markCellAsOccupiedByAZombie(newCoordinate);
+      this.world.markCellAsOccupiedByAZombie(newCoordinate);
       this.world.markCellAsEmpty(currentCoordinate);
     });
   }
 
   markCellAsOccupiedByAZombie(coordinate) {
-    this.guardThatCellIsNotMarkedAsOccupiedTwice(coordinate);
-    this.world.markCellAsOccupiedByAZombie(coordinate);
+    return this.world.markCellAsOccupiedByAZombie(coordinate);
   }
 
   render() {
@@ -64,14 +63,6 @@ class Game {
         `The initial number of zombies (${
           this.initialNumberOfZombies
         }) in the world cannot be greater than the number of cells (${this.world.size()})`
-      );
-    }
-  }
-
-  guardThatCellIsNotMarkedAsOccupiedTwice(coordinate) {
-    if (this.world.cellIsOccupiedByAZombie(coordinate)) {
-      throw new RangeError(
-        `The cell ${coordinate.toString()} is already occupied by another zombie`
       );
     }
   }

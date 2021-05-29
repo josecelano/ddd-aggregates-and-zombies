@@ -24,6 +24,7 @@ class ApocalypticWorld {
   }
 
   markCellAsOccupiedByAZombie(coordinate) {
+    this.guardThatCellIsNotMarkedAsOccupiedTwice(coordinate);
     this.grid.setGridCellContent(coordinate, CELL_OCCUPIED);
   }
 
@@ -55,6 +56,14 @@ class ApocalypticWorld {
         return this.isInside(coordinate) && this.cellIsEmpty(coordinate);
       })
     );
+  }
+
+  guardThatCellIsNotMarkedAsOccupiedTwice(coordinate) {
+    if (this.cellIsOccupiedByAZombie(coordinate)) {
+      throw new RangeError(
+        `The cell ${coordinate.toString()} is already occupied by another zombie`
+      );
+    }
   }
 }
 
