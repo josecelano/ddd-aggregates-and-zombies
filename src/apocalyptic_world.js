@@ -43,6 +43,12 @@ class ApocalypticWorld {
     return this.grid.isInside(coordinate);
   }
 
+  getEmptyAdjacentCoordinates(coordinate) {
+    return this.filterEmptyCoordinatesFromCollection(
+      this.grid.adjacentCoordinates(coordinate)
+    );
+  }
+
   filterEmptyCoordinatesFromCollection(coordinateCollection) {
     return new CoordinateCollection(
       coordinateCollection.coordinates.filter((coordinate) => {

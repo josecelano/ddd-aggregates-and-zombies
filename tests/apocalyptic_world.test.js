@@ -55,7 +55,24 @@ it("should return the world size in number of cells", () => {
   expect(apocalypticWorld.size()).toBe(4);
 });
 
-it("should filter the valid and emptycoordinates from a collection of coordinates", () => {
+it("should get collection of empty adjacent cells from a given coordinate", () => {
+  const apocalypticWorld = new ApocalypticWorld(1, 2);
+
+  /*
+    (0,0) (0,1)
+    EMPTY OCCUPIED
+  */
+
+  apocalypticWorld.markCellAsOccupiedByAZombie(new Coordinate(0, 1));
+
+  expect(
+    apocalypticWorld
+      .getEmptyAdjacentCoordinates(new Coordinate(0, 1))
+      .equalsTo(new CoordinateCollection([new Coordinate(0, 0)]))
+  ).toBe(true);
+});
+
+it("should filter the valid and empty coordinates from a collection of coordinates", () => {
   const apocalypticWorld = new ApocalypticWorld(1, 2);
 
   /*
