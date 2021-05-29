@@ -17,11 +17,9 @@ const initialNumberOfZombies = Math.floor(
 const game = new Game(rows, columns, initialNumberOfZombies);
 
 // Game start
-
 game.startGame();
 
 // Game cron tasks
-
 setInterval(() => {
   /* eslint-disable no-console */
   console.clear();
@@ -34,5 +32,4 @@ setInterval(() => {
 }, 1500);
 
 // Game input
-
 waitUntilKeyPressed(KEY_TO_STOP_THE_GAME);
