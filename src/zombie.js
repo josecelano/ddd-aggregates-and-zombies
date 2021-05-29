@@ -34,12 +34,27 @@ class Zombie {
     );
 
     if (emptyAdjacentCoordinates.length() == 0) {
+      // The zombie can't move anywhere
       return this.coordinate;
     }
 
-    this.coordinate = emptyAdjacentCoordinates.getRandomCoordinate();
+    const currentCoordinate = this.coordinate;
+    const newCoordinate = emptyAdjacentCoordinates.getRandomCoordinate();
+
+    this.updatePositionInTheWorld(world, currentCoordinate, newCoordinate);
+    this.updateCoordinate(newCoordinate);
 
     return this.coordinate;
+  }
+
+  updateCoordinate(coordinate) {
+    this.coordinate = coordinate;
+    return this.coordinate;
+  }
+
+  updatePositionInTheWorld(world, fromCoordinate, toCoordinate) {
+    world.markCellAsEmpty(fromCoordinate);
+    world.markCellAsOccupiedByAZombie(toCoordinate);
   }
 }
 

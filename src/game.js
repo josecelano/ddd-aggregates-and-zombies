@@ -34,15 +34,7 @@ class Game {
 
   moveZombies() {
     this.zombies.forEach((zombie) => {
-      const currentCoordinate = zombie.getCoordinate();
-      const newCoordinate = zombie.moveRandomly(this.world);
-
-      if (newCoordinate.equalsTo(currentCoordinate)) {
-        return;
-      }
-
-      this.world.markCellAsOccupiedByAZombie(newCoordinate);
-      this.world.markCellAsEmpty(currentCoordinate);
+      zombie.moveRandomly(this.world);
     });
   }
 
