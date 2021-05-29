@@ -36,5 +36,6 @@ Run tests:
 
 ## TODO
 
- * Extract non testable from game and complete testing for the class.
+ * Extract non testable from game and complete testing for the classes.
+ * Github workflow to run tests and publish docker image.
  * Force concurrency problems: two zombies in the same cell.
