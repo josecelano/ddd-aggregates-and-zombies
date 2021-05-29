@@ -9,38 +9,14 @@ it("should have a initial coordinate", () => {
   expect(zombie.getCoordinate()).toBe(coordinate);
 });
 
-it("should move to the right", () => {
-  const world = new ApocalypticWorld(2, 2);
-  const coordinate = new Coordinate(0, 0);
-  const zombie = new Zombie(coordinate);
-
-  const newCoordiante = zombie.moveToTheRight(world);
-
-  expect(newCoordiante.equalsTo(new Coordinate(0, 1))).toBe(true);
-});
-
+/* TODO
 it("should not move outside the world", () => {
-  const world = new ApocalypticWorld(2, 2);
-  const coordinate = new Coordinate(1, 1);
-  const zombie = new Zombie(coordinate);
 
-  const newCoordiante = zombie.moveToTheRight(world);
+});*/
 
-  expect(newCoordiante.equalsTo(coordinate)).toBe(true);
-});
-
+/* TODO
 it("should not move to another cells occupied by another zombie", () => {
-  const world = new ApocalypticWorld(1, 2);
-
-  // (0, 0) (0, 1)
-
-  const coordinate = new Coordinate(0, 0);
-  const zombie = new Zombie(coordinate);
-
-  world.markCellAsOccupiedByAZombie(new Coordinate(0, 1));
-
-  expect(zombie.moveToTheRight(world).equalsTo(coordinate)).toBe(true);
-});
+});*/
 
 describe("random movement", () => {
   it("should move randomly to an adjacent empty cell", () => {
