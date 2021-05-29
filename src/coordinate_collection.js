@@ -1,12 +1,10 @@
+import Coordinate from "./coordinate";
 import { getRandomItemFromArray } from "./random";
 
 class CoordinateCollection {
   constructor(coordinates) {
-    if (!Array.isArray(coordinates)) {
-      throw new RangeError(
-        `The coordinate collection constructor expects an array instead of ${coordinates}`
-      );
-    }
+    this.guardThatIsArray(coordinates);
+    this.guardThatAllValuesAreCoordinates(coordinates);
     this.coordinates = coordinates;
   }
 
@@ -38,6 +36,24 @@ class CoordinateCollection {
 
   getRandomCoordinate() {
     return getRandomItemFromArray(this.coordinates);
+  }
+
+  guardThatIsArray(coordinates) {
+    if (!Array.isArray(coordinates)) {
+      throw new TypeError(
+        `The coordinate collection constructor expects an array instead of ${coordinates}`
+      );
+    }
+  }
+
+  guardThatAllValuesAreCoordinates(coordinates) {
+    coordinates.forEach((value) => {
+      if (!(value instanceof Coordinate)) {
+        throw new TypeError(
+          `The coordinate collection constructor expects an array of Coordinate. Found invalid value ${value}`
+        );
+      }
+    });
   }
 }
 

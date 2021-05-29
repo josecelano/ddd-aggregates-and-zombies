@@ -1,6 +1,41 @@
 import Coordinate from "../src/coordinate";
 import CoordinateCollection from "../src/coordinate_collection";
 
+it("should contains a collection of coordinates", () => {
+  const coordiante = new Coordinate(0, 0);
+  const coordinateCollection = new CoordinateCollection([coordiante]);
+
+  expect(coordinateCollection.contains(coordiante)).toBe(true);
+});
+
+it("can be instantiated only from arrays", () => {
+  const invalidValues = [null, "", " ", -1, 1.2, -1.2];
+
+  invalidValues.forEach(function (value) {
+    const t = (value) => {
+      new CoordinateCollection(value);
+    };
+
+    expect(() => {
+      t(value);
+    }).toThrow(TypeError);
+  });
+});
+
+it("should not be instantiated with invalid values", () => {
+  const invalidValues = [[null], [""], [" "], [-1], [1.2], [-1.2]];
+
+  invalidValues.forEach(function (value) {
+    const t = (value) => {
+      new CoordinateCollection(value);
+    };
+
+    expect(() => {
+      t(value);
+    }).toThrow(TypeError);
+  });
+});
+
 it("should allow to add a coordinate", () => {
   const coordinateCollection = new CoordinateCollection([]);
   const coordiante = new Coordinate(0, 0);
