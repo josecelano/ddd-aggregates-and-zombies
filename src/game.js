@@ -3,6 +3,8 @@ import printWorld from "./print_world";
 import { generateRamdomCoordinate, getRandomItemFromArray } from "./random";
 import Zombie from "./zombie";
 
+const MODE_AGGREGATE = "aggregate";
+
 class Game {
   constructor(rows, columns, initialNumberOfZombies) {
     this.rows = rows;
@@ -15,9 +17,9 @@ class Game {
     this.guardThatZombiesNumberDoesNotExceedTheNumberOfCells();
   }
 
-  start() {
+  start(mode) {
     this.populateWorldWithZombiesInRandomPositions();
-    this.moveZombiesRandomly();
+    this.moveZombiesRandomly(mode);
   }
 
   populateWorldWithZombiesInRandomPositions() {
@@ -37,7 +39,7 @@ class Game {
     } while (this.zombies.length < this.initialNumberOfZombies);
   }
 
-  moveZombiesRandomly() {
+  moveZombiesRandomly(mode) {
     this.zombies.forEach((zombie) => {
       const zombieSpeedsInMiliseconds = [500, 1000, 1500, 2000];
 
@@ -49,29 +51,36 @@ class Game {
       );
 
       this.makeZombieThinkOnEachInterval(zombie, zoombieThinkingSpeed);
-      this.makeZombieWalkOnEachInterval(zombie, zoombieWalkingSpeed);
+      this.makeZombieWalkOnEachInterval(zombie, zoombieWalkingSpeed, mode);
     }, this);
   }
 
   makeZombieThinkOnEachInterval(zombie, zoombieThinkingSpeed) {
     const thinkingInterval = setInterval(
-      function (game, zombie) {
-        zombie.thinkWhereToWalk(game.world);
+      function (world, zombie) {
+        zombie.thinkWhereToWalk(world);
       },
       zoombieThinkingSpeed,
-      this,
+      this.world,
       zombie
     );
     this.zombiesThinkingMovementIntervals.push(thinkingInterval);
   }
 
-  makeZombieWalkOnEachInterval(zombie, zoombieWalkingSpeed) {
+  makeZombieWalkOnEachInterval(zombie, zoombieWalkingSpeed, mode) {
     const walkingInterval = setInterval(
-      function (game, zombie) {
-        zombie.walkTo(game.world);
+      function (world, zombie) {
+        const fromCoordinate = zombie.getCoordinate();
+        if (mode == MODE_AGGREGATE) {
+          // We update the zombie position using the world aggregate root entity
+          world.moveZombie(zombie);
+        } else {
+          const toCoordinate = zombie.walk(world);
+          world.updateZombiePosition(fromCoordinate, toCoordinate);
+        }
       },
       zoombieWalkingSpeed,
-      this,
+      this.world,
       zombie
     );
     this.zombiesMovementIntervals.push(walkingInterval);

@@ -23,6 +23,20 @@ class ApocalypticWorld {
     return this.rows * this.columns;
   }
 
+  updateZombiePosition(fromCoordinate, toCoordinate) {
+    this.markCellAsEmpty(fromCoordinate);
+    this.markCellAsOccupiedByAZombie(toCoordinate);
+  }
+
+  moveZombie(zombie) {
+    if (this.cellIsEmpty(zombie.getNextCoordinate())) {
+      const fromCoordinate = zombie.getCoordinate();
+      const toCoordinate = zombie.walk(this);
+      this.markCellAsEmpty(fromCoordinate);
+      this.markCellAsOccupiedByAZombie(toCoordinate);
+    }
+  }
+
   markCellAsOccupiedByAZombie(coordinate) {
     this.guardThatCellIsNotMarkedAsOccupiedTwice(coordinate);
     this.grid.setGridCellContent(coordinate, CELL_OCCUPIED);

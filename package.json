@@ -24,6 +24,7 @@
   "scripts": {
     "build": "babel src -d lib",
     "start": "node lib/index.js",
+    "start:aggregate": "node lib/index.js aggregate",
     "test": "jest",
     "test:coverage": "jest --collect-coverage",
     "lint": "eslint --ignore-path .gitignore . --ext .js,.html",

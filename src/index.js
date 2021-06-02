@@ -13,11 +13,18 @@ const initialNumberOfZombies = Math.floor(
   (rows * columns * percentageOfCellsOccupiedByZombies) / 100
 );
 
+// Parse command line arguments:
+//
+// node ROOT_DIR/index.js [aggregate]
+//
+// If [optional] mode is "aggregate" we keep consistency for the invariant: "only one zombie can be at the same time in a world cell".
+const mode = process.argv.slice(2);
+
 // Game instantiation
 const game = new Game(rows, columns, initialNumberOfZombies);
 
 // Game start
-game.start();
+game.start(mode);
 
 // Game rendering
 setInterval(() => {

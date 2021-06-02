@@ -8,9 +8,13 @@ class Zombie {
     return this.coordinate;
   }
 
+  getNextCoordinate() {
+    return this.nextCoordinate;
+  }
+
   moveRandomly(world) {
     this.thinkWhereToWalk(world);
-    this.walkTo(world);
+    this.walk(world);
   }
 
   thinkWhereToWalk(world) {
@@ -26,19 +30,13 @@ class Zombie {
     this.nextCoordinate = emptyAdjacentCoordinates.getRandomCoordinate();
   }
 
-  walkTo(world) {
-    this.updatePositionInTheWorld(world, this.coordinate, this.nextCoordinate);
-    this.updateCoordinate(this.nextCoordinate);
+  walk() {
+    return this.updateCoordinate(this.nextCoordinate);
   }
 
   updateCoordinate(coordinate) {
     this.coordinate = coordinate;
     return this.coordinate;
-  }
-
-  updatePositionInTheWorld(world, fromCoordinate, toCoordinate) {
-    world.markCellAsEmpty(fromCoordinate);
-    world.markCellAsOccupiedByAZombie(toCoordinate);
   }
 }
 
