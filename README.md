@@ -3,13 +3,24 @@
 * Node 14.17.0
 * Docker 20.10.5
 
+## Run
+
+With docker:
+```
+docker run --rm -it josecelano/ddd-aggregates-and-zombies
+```
+
+Dockerhub image: https://hub.docker.com/r/josecelano/ddd-aggregates-and-zombies
+
+You can also install the project (clone, build and run).
+
 ## Install
 
 From repo:
 ```
-git@github.com:josecelano/ddd-aggregates-and-zombies.git
+git clone git@github.com:josecelano/ddd-aggregates-and-zombies.git
 ./bin/docker/build.sh
-./bin/docker/build.sh
+./bin/docker/run.sh
 ```
 
 ## Development
@@ -58,4 +69,3 @@ Run tests:
 ## TODO
 
  * Add missing tests for new changes.
- * Github workflow to run tests and publish docker image to Github container registry.
