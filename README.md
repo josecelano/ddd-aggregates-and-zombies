@@ -1,3 +1,22 @@
+# DDD aggregates & zombies
+
+![Screenshot](doc/img/screenshot.png)
+
+Why this repo? I think there are two main sources to learn about DDD agregates or at least those were the sources where I got a better understanding about aggregates from. In both cases the authors use an example with database and transactions. I wonder if:
+
+ * DDD aggregates design makes sense without persisting objects. I mean, can we use the same design principles to keep consistency only having objects in memory?
+ * Can I came up with a simpler sample to explain DDD agregates without using databases?
+
+ I decided to write this small sample to learn more about DDD aggregates. I think the problem they solve it's a generic concurrency problem, in the sense of having 2 entities trying to update a shared state in a context where race conditions can happen. My idea was:
+
+ 1. First, try to reproduce such scenario where I have a domain invariant and 2 objects updating a shared state.
+ 2. Second, try to find out if what I learnt from both articles also apply only to objects in memory and if I can keep domain invariant designing the rigth aggregates.
+ 3. Finally, if they also apply, try to explain the example step by step in order to have the most simple possible example about DDD aggregates (withput involving databases).
+
+ Althougth the sample is finished the resoning about this topic (or learning) is a WIP. I would like to write the:
+
+ [Full explanation about this example](doc/ddd-agregates.md)
+
 ## Requirements
 
 * Node 14.17.0
@@ -69,3 +88,10 @@ Run tests:
 ## TODO
 
  * Add missing tests for new changes.
+ * Long explanation in docs.
+ * Links to DDD aggregates articles.
+
+## Links
+
+ * [Vaughn Vernon - Effective Aggregate Design](https://www.dddcommunity.org/library/vernon_2011/)
+ * [Buenosvinos/Soronellas/Akbary - DDD in PHP book](https://leanpub.com/ddd-in-php)
