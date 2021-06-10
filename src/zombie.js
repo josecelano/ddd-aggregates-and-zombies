@@ -12,11 +12,6 @@ class Zombie {
     return this.nextCoordinate;
   }
 
-  moveRandomly(world) {
-    this.thinkWhereToWalk(world);
-    this.walk(world);
-  }
-
   thinkWhereToWalk(world) {
     const emptyAdjacentCoordinates = world.getEmptyAdjacentCoordinates(
       this.coordinate

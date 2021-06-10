@@ -95,10 +95,6 @@ class Game {
     });
   }
 
-  moveZombieRandomly(zombie) {
-    zombie.moveRandomly(this.world);
-  }
-
   markCellAsOccupiedByAZombie(coordinate) {
     return this.world.markCellAsOccupiedByAZombie(coordinate);
   }
