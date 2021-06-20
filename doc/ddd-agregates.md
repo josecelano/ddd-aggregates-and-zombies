@@ -1,4 +1,4 @@
-# TODO
+# DDD aggregates without persistence
 
 In the apocalyptic world we have cells and zombies.
 
@@ -96,9 +96,16 @@ TODO: sequence diagram with aggregate version.
 
 ## Quotes
 
-Vaughn Vernon:
+[Implementing Domain-Driven Design Book](https://www.amazon.com/Implementing-Domain-Driven-Design-Vaughn-Vernon/dp/0321834577) (Vaughn Vernon):
+
+> A properly designed Aggregate is one that can be modified in any way required by the business with its invariants completely consistent within a single transaction. And a properly designed Bounded Context modifies only one Aggregate instance per transaction in all cases. What is more, we cannot correctly reason on Aggregate design without applying transactional analysis.
+
+[Effective Aggregate Design Articles](https://www.dddcommunity.org/library/vernon_2011/) (Vaughn Vernon):
+
 > Aggregate is synonymous with transactional consistency boundary.
 
 >  We cannot correctly reason on aggregate design without applying transactional analysis.
 
+[DDD in PHP Book](https://leanpub.com/ddd-in-php) (Carlos Buenosvinos, Christian Soronellas, Keyvan Akbary)
 
+>Aggregates are all about persistence and transactions. In fact, you can’t design Aggregates t without thinking about how they’re going to be persisted. The basic rules to design proper Aggregates are: make them small, find true business invariants, push for eventual consistency using Domain Events, reference other Aggregates by Identity, and modify one Aggregate per request. Review how the code changes if two Entities form a single Aggregate or not. Use factories to enrich your Entities.
