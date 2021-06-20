@@ -8,7 +8,7 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn test:coverage && yarn build
+RUN yarn test:coverage && yarn audit && yarn build
 
 FROM node:14.17-alpine3.13 as app
 
