@@ -1,5 +1,7 @@
 # DDD aggregates & zombies
 
+![example workflow](https://github.com/josecelano/ddd-aggregates-and-zombies/actions/workflows/main.yml/badge.svg)
+
 ![Screenshot](doc/img/screenshot.png)
 
 Why this repo? I think there are two main sources to learn about DDD agregates or at least those were the sources where I got a better understanding about aggregates from. In both cases the authors use an example with database and transactions. I wonder if:
