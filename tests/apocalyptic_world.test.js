@@ -9,15 +9,6 @@ it("should be a grid of n rows x m columns", () => {
   expect(apocalypticWorld.numColumns()).toBe(11);
 });
 
-it("should allow to mark a cell as occupied by a zombie", () => {
-  const apocalypticWorld = new ApocalypticWorld(10, 11);
-  const coordinate = new Coordinate(0, 0);
-
-  apocalypticWorld.markCellAsOccupiedByAZombie(coordinate);
-
-  expect(apocalypticWorld.cellIsOccupiedByAZombie(coordinate)).toBe(true);
-});
-
 it("it should be empty at the beginning", () => {
   const apocalypticWorld = new ApocalypticWorld(1, 1);
   expect(apocalypticWorld.cellIsOccupiedByAZombie(new Coordinate(0, 0))).toBe(
@@ -32,6 +23,28 @@ it("should allow to mark a cell as empty", () => {
   apocalypticWorld.markCellAsEmpty(coordinate);
 
   expect(apocalypticWorld.cellIsEmpty(coordinate)).toBe(true);
+});
+
+it("should allow to mark a cell as occupied by a zombie", () => {
+  const apocalypticWorld = new ApocalypticWorld(10, 11);
+  const coordinate = new Coordinate(0, 0);
+
+  apocalypticWorld.markCellAsOccupiedByAZombie(coordinate);
+
+  expect(apocalypticWorld.cellIsOccupiedByAZombie(coordinate)).toBe(true);
+});
+
+it("should allow to update the position of a zombie", () => {
+  const twoCellWorld = new ApocalypticWorld(1, 2);
+  const initialCoordinate = new Coordinate(0, 0);
+  const finalCoordinate = new Coordinate(0, 0);
+
+  twoCellWorld.markCellAsOccupiedByAZombie(new Coordinate(0, 0));
+  
+  twoCellWorld.updateZombiePosition(initialCoordinate, finalCoordinate);
+
+  expect(apocalypticWorld.cellIsEmpty(initialCoordinate)).toBe(true);
+  expect(apocalypticWorld.cellIsOccupiedByAZombie(finalCoordinate)).toBe(true);
 });
 
 it("should only allow to mark valid cells", () => {
