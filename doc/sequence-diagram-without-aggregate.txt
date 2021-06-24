@@ -1,0 +1,27 @@
+title Initial Mode (no aggregate)
+
+participant Game
+participant Zombie 01
+
+
+participant Zombie 02
+participant World
+
+Zombie 01->(3)World
+
+note right of World:Initial State\n0 0 0\n1 0 1\n0 0 0
+note right of Zombie 01:Z pos: (1,0)\nZ next pos: (1,0)
+Game->Zombie 01:zombie01.thinkWhereToWalk(world)
+note right of Zombie 01:Z pos: (1,0)\nZ next pos: (1,1)
+note right of Zombie 02:Z pos: (1,2)\nZ next pos: (1,2)
+Game->Zombie 02:zombie02.thinkWhereToWalk(world)
+note right of Zombie 02:Z pos: (1,1)\nZ next pos: (1,1)
+Game->Zombie 01:zombie01.walk(world)
+note right of Zombie 01:Z pos: (1,1)\nZ next pos: (1,1)
+Game->World:world.updateZombiePosition(fromCoordinate, toCoordinate)
+note right of World:State\n0 0 0\n0 1 1\n0 0 0
+Game->Zombie 02:zombie.walk(world)
+note right of Zombie 02:Z pos: (1,1)\nZ next pos: (1,1)
+Game->World:world.updateZombiePosition(fromCoordinate, toCoordinate)
+note right of Zombie 02:Zombie02 cell = Zombie01 cell and world state is wrong
+note right of World:State\n0 0 0\n0 1 1\n0 0 0

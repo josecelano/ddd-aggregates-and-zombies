@@ -23,11 +23,13 @@ class ApocalypticWorld {
     return this.rows * this.columns;
   }
 
+  // No aggregate version
   updateZombiePosition(fromCoordinate, toCoordinate) {
     this.markCellAsEmpty(fromCoordinate);
     this.markCellAsOccupiedByAZombie(toCoordinate);
   }
 
+  // Aggregate version
   moveZombie(zombie) {
     if (this.cellIsEmpty(zombie.getNextCoordinate())) {
       const fromCoordinate = zombie.getCoordinate();

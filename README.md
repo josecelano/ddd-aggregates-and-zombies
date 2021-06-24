@@ -88,8 +88,6 @@ Run tests:
 ## TODO
 
  * Add missing tests for new changes.
- * Long explanation in docs.
- * Links to DDD aggregates articles.
 
 ## Links
 

@@ -92,7 +92,9 @@ In the initial version each zombie decides to move to an empty cell (1,1) becuas
 
 The problem with this initial solution is we need to check again the world state before updating the zombie coordinate becuase the world state has changed. In other words, we can not update a zombie state independently without considering the world state. If we give the `Word` the responsability to update the `Zombie` state, the `World` can check if the new zombie coordinate is a valid (not empty) coordinate. The `World` would be the aggregate root.
 
-TODO: sequence diagram with aggregate version.
+![Sequence diagram with aggregate](img/sequence-diagram-with-aggregate.svg)
+
+In this new version we update the world and zombie state at the same time in an atomic operation.
 
 ## Quotes
 
@@ -109,3 +111,7 @@ TODO: sequence diagram with aggregate version.
 [DDD in PHP Book](https://leanpub.com/ddd-in-php) (Carlos Buenosvinos, Christian Soronellas, Keyvan Akbary)
 
 >Aggregates are all about persistence and transactions. In fact, you can’t design Aggregates t without thinking about how they’re going to be persisted. The basic rules to design proper Aggregates are: make them small, find true business invariants, push for eventual consistency using Domain Events, reference other Aggregates by Identity, and modify one Aggregate per request. Review how the code changes if two Entities form a single Aggregate or not. Use factories to enrich your Entities.
+
+## Acknowledgements
+
+Sequence diagrams where build using https://sequencediagram.org/

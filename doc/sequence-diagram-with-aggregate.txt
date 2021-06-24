@@ -1,0 +1,37 @@
+title World Aggregate Mode
+
+participant Game
+participant World
+
+participant Zombie 01
+
+
+participant Zombie 02
+
+Zombie 01->(3)World
+
+note right of World:Initial State\n0 0 0\n1 0 1\n0 0 0
+note right of Zombie 01:Z pos: (1,0)\nZ next pos: (1,0)
+Game->Zombie 01:zombie01.thinkWhereToWalk(world)
+note right of Zombie 01:Z pos: (1,0)\nZ next pos: (1,1)
+note right of Zombie 02:Z pos: (1,2)\nZ next pos: (1,2)
+Game->Zombie 02:zombie02.thinkWhereToWalk(world)
+note right of Zombie 02:Z pos: (1,2)\nZ next pos: (1,1)
+note right of Game:Both zombies want to go to the center cell
+Game->World:world.moveZombie(zombie01)
+World->Zombie 01:zombie01.getNextCoordinate()
+World->World:world.cellIsEmpty(zoombie01.nextCoordinate)
+World->Zombie 01:zombie01.getCoordinate()
+World->Zombie 01:zombie01.walk(world)
+note right of Zombie 01:Z pos: (1,1)\nZ next pos: (1,1)
+World->World:world.markCellAsEmpty(zombie01.previousCoordinate)
+World->World:markCellAsOccupiedByAZombie(zombie01.coordinate)
+note right of Zombie 01:Zombie01 moved to the center cell
+note right of World:State\n0 0 0\n0 1 1\n0 0 0
+Game->World:world.moveZombie(zombie02)
+note right of Zombie 02:Z pos: (1,2)\nZ next pos: (1,1)
+World->Zombie 02:zombie02.getNextCoordinate()
+World->World:world.cellIsEmpty(zoombie02.nextCoordinate)
+note right of Zombie 02:Zombie02 state does not change
+note right of World:World state does not change
+note right of World:State\n0 0 0\n0 1 1\n0 0 0
