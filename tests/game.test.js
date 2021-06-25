@@ -76,8 +76,7 @@ it("should move zombies around", () => {
 
   const game = new Game(rows, columns, initialNumberOfZombies);
 
-  game.populateWorldWithZombiesInRandomPositions();
-  game.moveZombiesRandomly();
+  game.start('aggregate');
 
   const output = game.render();
   let finalOutputValid = false;
@@ -109,8 +108,7 @@ it("should not move zombies where they can not go anywhere", () => {
 
   const game = new Game(rows, columns, initialNumberOfZombies);
 
-  game.populateWorldWithZombiesInRandomPositions();
-  game.moveZombiesRandomly();
+  game.start('aggregate');
 
   const output = game.render();
 

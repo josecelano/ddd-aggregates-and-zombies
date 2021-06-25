@@ -96,4 +96,21 @@ Run tests:
 
  * Add missing tests for new changes.
  * Code review: add a wrapper method to the world for `zombie.thinkWhereToWalk(world);` like this `world.makeZombieWalk(zombie)`
- * COew review: rename `world.moveZombie(zombie);` to `world.makeZombieWalk(zombie);`?
+ * Code review: rename `world.moveZombie(zombie);` to `world.makeZombieWalk(zombie);`?
+ * Test intervals. The current test coverage report shows that the intervals functions are not being covered althougth in fact, they are:
+
+ ```
+ --------------------------|---------|----------|---------|---------|-------------------
+File                      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------|---------|----------|---------|---------|-------------------
+All files                 |   95.68 |    93.48 |   97.26 |   96.13 |                   
+ apocalyptic_world.js     |     100 |      100 |     100 |     100 |                   
+ coordinate.js            |     100 |      100 |     100 |     100 |                   
+ coordinate_collection.js |     100 |      100 |     100 |     100 |                   
+ game.js                  |   85.11 |     62.5 |   89.47 |   86.96 | 61,73-79          
+ grid.js                  |     100 |      100 |     100 |     100 |                   
+ print_world.js           |     100 |      100 |     100 |     100 |                   
+ random.js                |     100 |      100 |     100 |     100 |                   
+ zombie.js                |     100 |      100 |     100 |     100 |                   
+--------------------------|---------|----------|---------|---------|-------------------
+```
