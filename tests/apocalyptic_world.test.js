@@ -1,6 +1,7 @@
 import ApocalypticWorld from "../src/apocalyptic_world";
 import Coordinate from "../src/coordinate";
 import CoordinateCollection from "../src/coordinate_collection";
+import Zoombie from "../src/zombie";
 
 it("should be a grid of n rows x m columns", () => {
   const apocalypticWorld = new ApocalypticWorld(10, 11);
@@ -34,7 +35,7 @@ it("should allow to mark a cell as occupied by a zombie", () => {
   expect(apocalypticWorld.cellIsOccupiedByAZombie(coordinate)).toBe(true);
 });
 
-it("should allow to update the position of a zombie", () => {
+it("should allow to update the position of a zombie (non aggregate version)", () => {
   const twoCellWorld = new ApocalypticWorld(1, 2);
   const initialCoordinate = new Coordinate(0, 0);
   const finalCoordinate = new Coordinate(0, 1);
@@ -45,6 +46,53 @@ it("should allow to update the position of a zombie", () => {
 
   expect(twoCellWorld.cellIsEmpty(initialCoordinate)).toBe(true);
   expect(twoCellWorld.cellIsOccupiedByAZombie(finalCoordinate)).toBe(true);
+});
+
+it("should move a zombie (aggregate version)", () => {
+  const twoCellWorld = new ApocalypticWorld(1, 2);
+  const initialCoordinate = new Coordinate(0, 0);
+  const finalCoordinate = new Coordinate(0, 1);
+  const zombie = new Zoombie(initialCoordinate);
+  
+  // Init zombie positions in the world
+  twoCellWorld.markCellAsOccupiedByAZombie(zombie.getCoordinate());
+  
+  // Make zombie think
+  zombie.thinkWhereToWalk(twoCellWorld);
+  
+  // Make zombie walk
+  twoCellWorld.moveZombie(zombie);
+
+  expect(twoCellWorld.cellIsEmpty(initialCoordinate)).toBe(true);
+  expect(twoCellWorld.cellIsOccupiedByAZombie(finalCoordinate)).toBe(true);
+});
+
+it("should move a zombie only if the new cell is free (aggregate version)", () => {
+  const threeCellWorld = new ApocalypticWorld(1, 3);
+  const zombie01InitialCoordinate = new Coordinate(0, 0);
+  const zombie02InitialCoordinate = new Coordinate(0, 2);
+  const zombie01 = new Zoombie(zombie01InitialCoordinate);
+  const zombie02 = new Zoombie(zombie02InitialCoordinate);
+
+  // Init zombie positions in the world
+  threeCellWorld.markCellAsOccupiedByAZombie(zombie01.getCoordinate());
+  threeCellWorld.markCellAsOccupiedByAZombie(zombie02.getCoordinate());
+
+  // Make zombies think. Both of them can only go to the center cell
+  zombie01.thinkWhereToWalk(threeCellWorld);
+  zombie02.thinkWhereToWalk(threeCellWorld);
+
+  // Make zombies walk
+  threeCellWorld.moveZombie(zombie01); // Zombie01 can only move the the center cell
+  threeCellWorld.moveZombie(zombie02); // Zombie02 can't move
+
+  // Free cell is now (0,0). Zombie01 moved from (0,0) to (0,1)
+  expect(threeCellWorld.cellIsEmpty(zombie01InitialCoordinate)).toBe(true);
+  expect(threeCellWorld.cellIsOccupiedByAZombie(zombie01.getCoordinate())).toBe(true);
+  expect(threeCellWorld.cellIsOccupiedByAZombie(zombie02.getCoordinate())).toBe(true);
+  
+  // Zombie02 has not moved
+  expect(zombie02.getCoordinate().equalsTo(zombie02InitialCoordinate)).toBe(true);
 });
 
 it("should only allow to mark valid cells", () => {

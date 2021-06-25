@@ -87,11 +87,13 @@ Run tests:
 ./bin/docker/test.sh
 ```
 
-## TODO
-
- * Add missing tests for new changes.
-
 ## Links
 
  * [Vaughn Vernon - Effective Aggregate Design](https://www.dddcommunity.org/library/vernon_2011/)
  * [Buenosvinos/Soronellas/Akbary - DDD in PHP book](https://leanpub.com/ddd-in-php)
+
+## TODO
+
+ * Add missing tests for new changes.
+ * Code review: add a wrapper method to the world for `zombie.thinkWhereToWalk(world);` like this `world.makeZombieWalk(zombie)`
+ * COew review: rename `world.moveZombie(zombie);` to `world.makeZombieWalk(zombie);`?
